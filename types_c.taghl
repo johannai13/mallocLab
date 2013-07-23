@@ -1,0 +1,11 @@
+syn keyword CTagsStructure range_t
+syn keyword CTagsMember index block_rand_base blocks weight trace ops util lo block_sizes num_ids secs filename ranges ignore_ranges hi num_ops next type valid size
+syn keyword CTagsGlobalVariable autoresult cyc_per_tick verbose cache_buf cache_block mem_max_addr random_data first_u errors default_tracefiles first_r clear_cache tracedir compensate kbest samples epsilon onetime_flag mem_brk rover heap_listp start_tick debug_mode Mhz maxsamples heap first_p timeout_jmpbuf cyc_hi counterRoutine cache_bytes samplecount counter cyc_lo values set_timeout sink
+syn keyword CTagsConstant randint_t_name
+syn keyword CTagsEnumerationValue ALLOC DBG_NONE DBG_CHEAP REALLOC DBG_EXPENSIVE FREE
+syn keyword CTagsFunction malloc set_fcyc_maxsamples mem_heap_hi app_error mem_reset_brk set_fcyc_cache_block run_tests printblock set_fcyc_compensate printresults randomize_block extend_heap mm_init checkblock init_sampler init_fsecs has_converged set_fcyc_cache_size place start_comp_counter unix_error eval_libc_speed ovhd clear_ranges eval_mm_speed set_fcyc_epsilon add_sample coalesce check_index malloc_error mm_checkheap mem_init fcyc eval_mm_util main mem_pagesize eval_libc_valid set_fcyc_k mem_heap_lo
+syn keyword CTagsFunction callibrate free_trace fsecs mhz_full find_fit set_fcyc_clear_cache read_trace free init_etime ftimer_gettod usage get_etime init_random_data calloc ftimer_itimer aligned realloc remove_range mem_heapsize start_counter mem_deinit eval_mm_valid get_counter reinit_trace mem_sbrk clear access_counter timeout_handler mhz in_heap get_comp_counter add_range
+syn keyword CTagsType randint_t fsecs_test_funct test_funct stats_t ftimer_test_funct speed_t trace_t traceop_t range_t
+syn keyword CTagsDefinedName ENSURES DEFAULT_TRACEFILES WALL SIZE_T_SIZE CACHE_BLOCK WNONE malloc ASSERT PREV_BLKP RANDOM_DATA_LEN FTRP MAXSAMPLES USE_FCYC calloc RECORDTHRESH dbg_printf CACHE_BYTES WUTIL GET MIN_SPACE KEEP_SAMPLES LINENUM DSIZE COMPENSATE MIN_SPEED USE_GETTOD THRESHOLD REQUIRES K USE_ITIMER IS_ALIGNED __CONFIG_H_ NEVENT WSIZE HDRP NEXT_BLKP ALIGN WPERF MAX_SPACE free GET_SIZE PUT MAX_SPEED DEBUG realloc MAXLINE CHUNKSIZE EPSILON CLEAR_CACHE TRACEDIR KEEP_VALS SIZE_PTR MAX MAX_ETIME
+syn keyword CTagsDefinedName UTIL_WEIGHT HDRLINES PACK GET_ALLOC ALIGNMENT MAX_HEAP
+
