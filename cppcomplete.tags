@@ -4,12 +4,12 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ALIGN	mm.c	41;"	d	file:
-ALIGNMENT	mm.c	38;"	d	file:
+ALIGN	mm.c	44;"	d	file:
+ALIGNMENT	mm.c	41;"	d	file:
 BIG_ENDIAN	/usr/include/endian.h	47;"	d
 BUFSIZ	/usr/include/stdio.h	128;"	d
 BYTE_ORDER	/usr/include/endian.h	49;"	d
-CHUNKSIZE	mm.c	47;"	d	file:
+CHUNKSIZE	mm.c	50;"	d	file:
 CLK_TCK	/usr/include/bits/time.h	41;"	d
 CLK_TCK	/usr/include/time.h	47;"	d
 CLOCKS_PER_SEC	/usr/include/bits/time.h	34;"	d
@@ -21,7 +21,7 @@ CLOCK_REALTIME	/usr/include/bits/time.h	46;"	d
 CLOCK_REALTIME_COARSE	/usr/include/bits/time.h	56;"	d
 CLOCK_THREAD_CPUTIME_ID	/usr/include/bits/time.h	52;"	d
 DEBUG	mm.c	20;"	d	file:
-DSIZE	mm.c	46;"	d	file:
+DSIZE	mm.c	49;"	d	file:
 EOF	/usr/include/stdio.h	135;"	d
 EXIT_FAILURE	/usr/include/stdlib.h	134;"	d
 EXIT_SUCCESS	/usr/include/stdlib.h	135;"	d
@@ -31,28 +31,31 @@ FD_SET	/usr/include/sys/select.h	93;"	d
 FD_SETSIZE	/usr/include/sys/select.h	81;"	d
 FD_ZERO	/usr/include/sys/select.h	96;"	d
 FILE	/usr/include/stdio.h	49;"	t	typeref:struct:_IO_FILE
-FTRP	mm.c	64;"	d	file:
+FTRP	mm.c	67;"	d	file:
 F_LOCK	/usr/include/unistd.h	1086;"	d
 F_OK	/usr/include/unistd.h	285;"	d
 F_TEST	/usr/include/unistd.h	1088;"	d
 F_TLOCK	/usr/include/unistd.h	1087;"	d
 F_ULOCK	/usr/include/unistd.h	1085;"	d
-GET	mm.c	55;"	d	file:
-GET_ALLOC	mm.c	60;"	d	file:
-GET_SIZE	mm.c	59;"	d	file:
-HDRP	mm.c	63;"	d	file:
+GET	mm.c	58;"	d	file:
+GET_ALLOC	mm.c	63;"	d	file:
+GET_SIZE	mm.c	62;"	d	file:
+HDRP	mm.c	66;"	d	file:
+LIFO	mm.c	29;"	d	file:
 LITTLE_ENDIAN	/usr/include/endian.h	46;"	d
 L_INCR	/usr/include/unistd.h	320;"	d
 L_SET	/usr/include/unistd.h	319;"	d
 L_XTND	/usr/include/unistd.h	321;"	d
-MAX	mm.c	49;"	d	file:
+MAX	mm.c	52;"	d	file:
 MB_CUR_MAX	/usr/include/stdlib.h	139;"	d
-NEXT_BLKP	mm.c	67;"	d	file:
+NEXT_BLKP	mm.c	70;"	d	file:
+NEXT_FBLKP	mm.c	75;"	d	file:
 NFDBITS	/usr/include/sys/select.h	88;"	d
-PACK	mm.c	52;"	d	file:
+PACK	mm.c	55;"	d	file:
 PDP_ENDIAN	/usr/include/endian.h	48;"	d
-PREV_BLKP	mm.c	68;"	d	file:
-PUT	mm.c	56;"	d	file:
+PREV_BLKP	mm.c	71;"	d	file:
+PREV_FBLKP	mm.c	76;"	d	file:
+PUT	mm.c	59;"	d	file:
 P_tmpdir	/usr/include/stdio.h	148;"	d
 RAND_MAX	/usr/include/stdlib.h	129;"	d
 R_OK	/usr/include/unistd.h	282;"	d
@@ -76,7 +79,7 @@ WIFCONTINUED	/usr/include/stdlib.h	92;"	d
 WIFEXITED	/usr/include/stdlib.h	88;"	d
 WIFSIGNALED	/usr/include/stdlib.h	89;"	d
 WIFSTOPPED	/usr/include/stdlib.h	90;"	d
-WSIZE	mm.c	45;"	d	file:
+WSIZE	mm.c	48;"	d	file:
 WSTOPSIG	/usr/include/stdlib.h	87;"	d
 WTERMSIG	/usr/include/stdlib.h	86;"	d
 W_OK	/usr/include/unistd.h	283;"	d
@@ -833,7 +836,7 @@ __wur	/usr/include/unistd.h	910;"	v
 __wur	/usr/include/unistd.h	956;"	v
 __x	/usr/include/stdlib.h	420;"	m	struct:drand48_data	access:public
 _exit	/usr/include/unistd.h	600;"	p
-aligned	mm.c	224;"	f	file:
+aligned	mm.c	260;"	f	file:
 atof	/usr/include/stdlib.h	279;"	f
 atoi	/usr/include/stdlib.h	284;"	f
 atol	/usr/include/stdlib.h	289;"	f
@@ -845,14 +848,16 @@ be32toh	/usr/include/endian.h	86;"	d
 be64toh	/usr/include/endian.h	76;"	d
 be64toh	/usr/include/endian.h	91;"	d
 btowc	/usr/include/wchar.h	386;"	f
-calloc	mm.c	201;"	f
-calloc	mm.c	34;"	d	file:
+calloc	mm.c	237;"	f
+calloc	mm.c	37;"	d	file:
+checkblock	mm.c	106;"	p	file:
+checkblock	mm.c	521;"	f	file:
 clock_nanosleep	/usr/include/time.h	347;"	p
 clock_t	/usr/include/time.h	60;"	t
 clockid_t	/usr/include/time.h	92;"	t
 close	/usr/include/unistd.h	350;"	p
-coalesce	mm.c	257;"	f	file:
-coalesce	mm.c	78;"	p	file:
+coalesce	mm.c	102;"	p	file:
+coalesce	mm.c	330;"	f	file:
 comparison_fn_t	/usr/include/stdlib.h	745;"	t
 cuserid	/usr/include/stdio.h	886;"	p
 dbg_printf	mm.c	22;"	d	file:
@@ -861,8 +866,9 @@ div_t	/usr/include/stdlib.h	102;"	t	typeref:struct:__anon49
 dprintf	/usr/include/stdio.h	419;"	p
 drand48_data	/usr/include/stdlib.h	418;"	s
 end_ptr	/usr/include/stdlib.h	357;"	m	struct:random_data	access:public
-extend_heap	mm.c	239;"	f	file:
-extend_heap	mm.c	77;"	p	file:
+extend_heap	mm.c	101;"	p	file:
+extend_heap	mm.c	295;"	f	file:
+fb_listp	mm.c	95;"	v	file:
 fclose	/usr/include/stdio.h	236;"	p
 fcloseall	/usr/include/stdio.h	261;"	p
 fd_mask	/usr/include/sys/select.h	85;"	t
@@ -879,8 +885,8 @@ fgetwc	/usr/include/wchar.h	743;"	p
 fgetwc_unlocked	/usr/include/wchar.h	808;"	p
 fgetws	/usr/include/wchar.h	772;"	p
 fgetws_unlocked	/usr/include/wchar.h	835;"	p
-find_fit	mm.c	318;"	f	file:
-find_fit	mm.c	80;"	p	file:
+find_fit	mm.c	104;"	p	file:
+find_fit	mm.c	466;"	f	file:
 flag	/usr/include/getopt.h	112;"	m	struct:option	access:public
 fpos64_t	/usr/include/stdio.h	117;"	t
 fpos_t	/usr/include/stdio.h	111;"	t
@@ -894,8 +900,8 @@ fputwc	/usr/include/wchar.h	757;"	p
 fputwc_unlocked	/usr/include/wchar.h	816;"	p
 fputws	/usr/include/wchar.h	779;"	p
 fputws_unlocked	/usr/include/wchar.h	844;"	p
-free	mm.c	145;"	f
-free	mm.c	32;"	d	file:
+free	mm.c	175;"	f
+free	mm.c	35;"	d	file:
 fscanf	/usr/include/stdio.h	461;"	d
 fseek	/usr/include/stdio.h	744;"	p
 fseeko	/usr/include/stdio.h	768;"	p
@@ -907,6 +913,7 @@ ftruncate	/usr/include/unistd.h	1032;"	d
 fwprintf	/usr/include/wchar.h	592;"	p
 fwscanf	/usr/include/wchar.h	633;"	p
 fwscanf	/usr/include/wchar.h	672;"	d
+get_addr	mm.c	86;"	f	file:
 getc	/usr/include/stdio.h	536;"	p
 getc	/usr/include/stdio.h	547;"	d
 getc_unlocked	/usr/include/stdio.h	554;"	p
@@ -927,7 +934,7 @@ getwchar	/usr/include/wchar.h	750;"	p
 getwchar_unlocked	/usr/include/wchar.h	800;"	p
 gid_t	/usr/include/unistd.h	233;"	t
 has_arg	/usr/include/getopt.h	111;"	m	struct:option	access:public
-heap_listp	mm.c	71;"	v	file:
+heap_listp	mm.c	94;"	v	file:
 htobe16	/usr/include/endian.h	64;"	d
 htobe16	/usr/include/endian.h	79;"	d
 htobe32	/usr/include/endian.h	69;"	d
@@ -940,7 +947,7 @@ htole32	/usr/include/endian.h	70;"	d
 htole32	/usr/include/endian.h	85;"	d
 htole64	/usr/include/endian.h	75;"	d
 htole64	/usr/include/endian.h	90;"	d
-in_heap	mm.c	216;"	f	file:
+in_heap	mm.c	252;"	f	file:
 intptr_t	/usr/include/unistd.h	268;"	t
 it_interval	/usr/include/time.h	163;"	m	struct:itimerspec	typeref:struct:itimerspec::timespec	access:public
 it_value	/usr/include/time.h	164;"	m	struct:itimerspec	typeref:struct:itimerspec::timespec	access:public
@@ -956,16 +963,16 @@ lldiv_t	/usr/include/stdlib.h	122;"	t	typeref:struct:__anon51
 locale_t	/usr/include/xlocale.h	43;"	t
 lockf	/usr/include/unistd.h	1097;"	d
 lseek	/usr/include/unistd.h	338;"	d
-malloc	mm.c	109;"	f
-malloc	mm.c	31;"	d	file:
+malloc	mm.c	139;"	f
+malloc	mm.c	34;"	d	file:
 mbrlen	/usr/include/wchar.h	397;"	f
 mbstate_t	/usr/include/wchar.h	106;"	t
 mkostemp	/usr/include/stdlib.h	680;"	d
 mkostemps	/usr/include/stdlib.h	702;"	d
 mkstemp	/usr/include/stdlib.h	626;"	d
 mkstemps	/usr/include/stdlib.h	648;"	d
-mm_checkheap	mm.c	231;"	f
-mm_init	mm.c	85;"	f
+mm_checkheap	mm.c	267;"	f
+mm_init	mm.c	111;"	f
 name	/usr/include/getopt.h	108;"	m	struct:option	access:public
 nanosleep	/usr/include/time.h	328;"	p
 no_argument	/usr/include/getopt.h	118;"	d
@@ -982,9 +989,11 @@ pclose	/usr/include/stdio.h	874;"	p
 perror	/usr/include/stdio.h	841;"	p
 pid_t	/usr/include/time.h	174;"	t
 pid_t	/usr/include/unistd.h	261;"	t
-place	mm.c	299;"	f	file:
-place	mm.c	79;"	p	file:
+place	mm.c	103;"	p	file:
+place	mm.c	423;"	f	file:
 pread	/usr/include/unistd.h	392;"	d
+printblock	mm.c	105;"	p	file:
+printblock	mm.c	501;"	f	file:
 printf	/usr/include/stdio.h	361;"	p
 pselect	/usr/include/sys/select.h	121;"	p
 pthread_attr_t	/usr/include/bits/pthreadtypes.h	57;"	t	typeref:union:__anon35
@@ -1000,6 +1009,7 @@ pthread_rwlock_t	/usr/include/bits/pthreadtypes.h	189;"	t	typeref:union:__anon42
 pthread_rwlockattr_t	/usr/include/bits/pthreadtypes.h	195;"	t	typeref:union:__anon44
 pthread_spinlock_t	/usr/include/bits/pthreadtypes.h	201;"	t
 pthread_t	/usr/include/bits/pthreadtypes.h	50;"	t
+put_addr	mm.c	79;"	f	file:
 putc	/usr/include/stdio.h	578;"	p
 putc	/usr/include/stdio.h	589;"	d
 putc_unlocked	/usr/include/stdio.h	606;"	p
@@ -1019,14 +1029,14 @@ rand_deg	/usr/include/stdlib.h	355;"	m	struct:random_data	access:public
 rand_sep	/usr/include/stdlib.h	356;"	m	struct:random_data	access:public
 rand_type	/usr/include/stdlib.h	354;"	m	struct:random_data	access:public
 random_data	/usr/include/stdlib.h	349;"	s
-realloc	mm.c	163;"	f
-realloc	mm.c	33;"	d	file:
+realloc	mm.c	199;"	f
+realloc	mm.c	36;"	d	file:
 rem	/usr/include/stdlib.h	101;"	m	struct:__anon49	access:public
 rem	/usr/include/stdlib.h	109;"	m	struct:__anon50	access:public
 rem	/usr/include/stdlib.h	121;"	m	struct:__anon51	access:public
 required_argument	/usr/include/getopt.h	119;"	d
 rewind	/usr/include/stdio.h	754;"	p
-rover	mm.c	73;"	v	file:
+rover	mm.c	97;"	v	file:
 rptr	/usr/include/stdlib.h	352;"	m	struct:random_data	access:public
 scanf	/usr/include/stdio.h	462;"	d
 select	/usr/include/sys/select.h	109;"	p

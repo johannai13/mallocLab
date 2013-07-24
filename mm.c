@@ -24,6 +24,9 @@
 # define dbg_printf(...)
 #endif
 
+/* Configuration macros*/ 
+/*#define NEXT_FIT  [>policy<] */
+#define LIFO
 
 /* do not change the following! */
 #ifdef DRIVER
@@ -42,9 +45,9 @@
 
 
 /* Basic constants and macros */
-#define WSIZE       4       /* Word and header/footer size (bytes) */ //line:vm:mm:beginconst
+#define WSIZE       4       /* Word and header/footer size (bytes) */ 
 #define DSIZE       8       /* Doubleword size (bytes) */
-#define CHUNKSIZE  (1<<12)  /* Extend heap by this amount (bytes) */  //line:vm:mm:endconst 
+#define CHUNKSIZE  (1<<12)  /* Extend heap by this amount (bytes) */ 
 
 #define MAX(x, y) ((x) > (y)? (x) : (y))  
 
@@ -67,8 +70,29 @@
 #define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(((char *)(bp) - WSIZE))) //line:vm:mm:nextblkp
 #define PREV_BLKP(bp)  ((char *)(bp) - GET_SIZE(((char *)(bp) - DSIZE))) //line:vm:mm:prevblkp
 
+/* Given free block ptr bp, compute address or address pointer of the
+ * next and previous blocks */ 
+#define NEXT_FBLKP(bp)  ((char*)(bp)) 
+#define PREV_FBLKP(bp)  ((char*)(bp + WSIZE))
+
+/* To store or get a double word size address in a wsize space*/ 
+static inline void put_addr(void *bp, void *value) {
+    if((size_t*)value != 0) /* Truncate the value into wsize(8 bytes)*/ 
+        *(unsigned int*)bp = (unsigned int)(size_t)value;
+    else
+        *(unsigned int*)bp = 0;
+}
+
+static inline void *get_addr(void *bp) {
+    if(*(unsigned int*)bp != 0)
+        return (void *)(((unsigned long long)0x8<<32) | *(unsigned int*)bp);
+    else
+        return (void *)0;
+}
+
 /* Global variables */
-static char *heap_listp = 0;  /* Pointer to first block */  
+static char *heap_listp = 0;  /* Pointer to first block */ 
+static char *fb_listp;  /* Pointer to the free block list for explicit list*/
 #ifdef NEXT_FIT
 static char *rover;           /* Next fit rover */
 #endif
@@ -85,6 +109,11 @@ static void checkblock(void* bp);
  * Initialize: return -1 on error, 0 on success.
  */
 int mm_init(void) {
+    
+    if ((fb_listp = mem_sbrk(2*WSIZE)) == (void *)-1) //line:vm:mm:begininit
+        return -1;
+    fb_listp = 0;
+
     /* Create the initial empty heap */
     if ((heap_listp = mem_sbrk(4*WSIZE)) == (void *)-1) //line:vm:mm:begininit
         return -1;
@@ -129,6 +158,7 @@ void *malloc (size_t size) {
 
     /* Search the free list for a fit */
     if ((bp = find_fit(asize)) != NULL) { 
+        dbg_printf("start to place at 0x%lx\n", (long)bp);
         place(bp, asize);                
         return bp;
     }
@@ -156,6 +186,12 @@ void free (void *ptr) {
 
     PUT(HDRP(ptr), PACK(size, 0));
     PUT(FTRP(ptr), PACK(size, 0));
+    
+    put_addr(PREV_FBLKP(ptr), 0);
+    put_addr(NEXT_FBLKP(ptr), fb_listp);
+    put_addr(PREV_FBLKP(fb_listp), ptr);
+    fb_listp = ptr;
+
     coalesce(ptr);
 }
 
@@ -259,6 +295,7 @@ void mm_checkheap(int verbose) {
  * Extend heap with free blocks and return its block pointer
  */
 static void *extend_heap(size_t words){
+    dbg_printf("Extending the heap!\n");
     char *bp;
     size_t size;
 
@@ -270,6 +307,23 @@ static void *extend_heap(size_t words){
     /*Intialize free block header/footer and the epilogue header*/
     PUT(HDRP(bp), PACK(size, 0)); /*Free block header*/ 
     PUT(FTRP(bp), PACK(size, 0)); /*Free block Footer*/ 
+#ifdef LIFO 
+    /*Initialize the free block list*/ 
+    if(fb_listp == 0) {
+        put_addr(NEXT_FBLKP(bp), 0);
+        put_addr(PREV_FBLKP(bp), 0);
+        fb_listp = bp;
+        dbg_printf("Initialized the free block list\n");
+    }
+    else {
+    /*Modify the free block list*/ 
+        char *old = fb_listp;
+        fb_listp = bp;
+        put_addr(PREV_FBLKP(fb_listp), 0);
+        put_addr(NEXT_FBLKP(fb_listp), old);
+        put_addr(PREV_FBLKP(old), fb_listp);
+    }
+#endif
     PUT(HDRP(NEXT_BLKP(bp)), PACK(0, 1)); /*The new epilogue block*/ 
 
     /*Coalasce if the previous block is free*/ 
@@ -280,30 +334,92 @@ static void* coalesce(void *bp) {
     size_t prev_alloc = GET_ALLOC(FTRP(PREV_BLKP(bp)));
     size_t next_alloc = GET_ALLOC(HDRP(NEXT_BLKP(bp)));
     size_t size = GET_SIZE(HDRP(bp));
+    char *old_nextp, *old_prevp;
 
     if (prev_alloc && next_alloc) {            /* Case 1 */
         return bp;
     }
 
     else if (prev_alloc && !next_alloc) {      /* Case 2 */
-        size += GET_SIZE(HDRP(NEXT_BLKP(bp)));
+        dbg_printf("coalasce case 2\n");
+        char *oldnext_blkp = NEXT_BLKP(bp);
+        old_nextp = get_addr(NEXT_FBLKP(oldnext_blkp));
+        old_prevp = get_addr(PREV_FBLKP(oldnext_blkp));
+
+        size += GET_SIZE(HDRP(oldnext_blkp));
         PUT(HDRP(bp), PACK(size, 0));
         PUT(FTRP(bp), PACK(size,0));
+        
+        put_addr(NEXT_FBLKP(bp), fb_listp);
+        put_addr(PREV_FBLKP(bp), 0);
+        put_addr(PREV_FBLKP(fb_listp), bp);
+        fb_listp = bp;
+        
+        /*if(get_addr(NEXT_FBLKP(fb_listp)) == old_blkp)
+            put_addr(NEXT_FBLKP(fb_listp), 0);*/
+
+        if(old_prevp != 0)
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), old_prevp);
     }
 
     else if (!prev_alloc && next_alloc) {      /* Case 3 */
+        dbg_printf("coalasce case 3\n");
+        char *old_blkp = fb_listp;
+        char *oldprev_blkp = PREV_BLKP(bp);
+        old_nextp = get_addr(NEXT_FBLKP(oldprev_blkp));
+        old_prevp = get_addr(PREV_FBLKP(oldprev_blkp));
+        
         size += GET_SIZE(HDRP(PREV_BLKP(bp)));
         PUT(FTRP(bp), PACK(size, 0));
         PUT(HDRP(PREV_BLKP(bp)), PACK(size, 0));
         bp = PREV_BLKP(bp);
+      
+        put_addr(NEXT_FBLKP(bp), fb_listp);
+        put_addr(PREV_FBLKP(bp), 0);
+        put_addr(PREV_FBLKP(fb_listp), bp);
+        fb_listp = bp;
+
+        /* The coalesced block are adjacent*/ 
+        if(get_addr(NEXT_FBLKP(fb_listp)) == old_blkp)
+            put_addr(NEXT_FBLKP(fb_listp), 0);
+
+        if(old_prevp != 0)
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), old_prevp);
     }
 
     else {                                     /* Case 4 */
-        size += GET_SIZE(HDRP(PREV_BLKP(bp))) + 
-            GET_SIZE(FTRP(NEXT_BLKP(bp)));
+        dbg_printf("coalasce case 4\n");
+        char *oldprev_blkp = PREV_BLKP(bp);
+        char *oldnext_blkp = NEXT_BLKP(bp);
+
+        size += GET_SIZE(HDRP(oldprev_blkp)) + 
+            GET_SIZE(FTRP(oldnext_blkp));
         PUT(HDRP(PREV_BLKP(bp)), PACK(size, 0));
         PUT(FTRP(NEXT_BLKP(bp)), PACK(size, 0));
         bp = PREV_BLKP(bp);
+
+        put_addr(NEXT_FBLKP(bp), fb_listp);
+        put_addr(PREV_FBLKP(bp), 0);
+        put_addr(PREV_FBLKP(fb_listp), bp);
+        fb_listp = bp;
+        
+        old_nextp = get_addr(NEXT_FBLKP(oldprev_blkp));
+        old_prevp = get_addr(PREV_FBLKP(oldprev_blkp));
+        if(old_prevp != 0)
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), old_prevp);
+        
+        old_nextp = get_addr(NEXT_FBLKP(oldnext_blkp));
+        old_prevp = get_addr(PREV_FBLKP(oldnext_blkp));
+        if(old_prevp != 0)
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), old_prevp);
     }
 #ifdef NEXT_FIT
     /* Make sure the rover isn't pointing into the free block */
@@ -320,17 +436,41 @@ static void* coalesce(void *bp) {
  */
 static void place(void *bp, size_t asize) {
     size_t csize = GET_SIZE(HDRP(bp));
+    char *old = bp;
+    void *old_nextp = get_addr(NEXT_FBLKP(old));
+    void *old_prevp = get_addr(PREV_FBLKP(old));
 
     if((csize - asize) >= (2 * DSIZE)) {
         PUT(HDRP(bp), PACK(asize, 1));
         PUT(FTRP(bp), PACK(asize, 1));
         bp = NEXT_BLKP(bp);
+
+        /*Initialize the new free block*/ 
+        put_addr(NEXT_FBLKP(bp), old_nextp);
+        put_addr(PREV_FBLKP(bp), old_prevp);
+
+        if(old_prevp != 0) 
+            put_addr(NEXT_FBLKP(old_prevp), bp);
+        else /*The free block is at the beginning of free list*/ 
+            fb_listp = bp;
+
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), bp);
+
         PUT(HDRP(bp), PACK(csize-asize, 0));
         PUT(FTRP(bp), PACK(csize-asize, 0)); 
     }
     else { /*The remainder is less than 2 double words, thus no split*/ 
         PUT(HDRP(bp), PACK(csize, 1));
         PUT(FTRP(bp), PACK(csize, 1));
+
+        if(old_prevp != 0) 
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        else /*The free block is at the beginning of free list*/ 
+            fb_listp = old_nextp;
+
+        if(old_nextp != 0)
+            put_addr(PREV_FBLKP(old_nextp), old_prevp);
     }
 }
 
@@ -356,9 +496,10 @@ static void *find_fit(size_t asize){
 #else 
     /* First fit search */
     void *bp;
-
-    for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp)) {
-        if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp)))) {
+/*may have problem */ 
+    for (bp = fb_listp; (bp!=NULL) && ((get_addr(NEXT_FBLKP(bp)) != 0) 
+    || (get_addr(PREV_FBLKP(bp)) == 0)); bp = get_addr(NEXT_FBLKP(bp))) {
+        if (asize <= GET_SIZE(HDRP(bp))) {
             return bp;
         }
     }
