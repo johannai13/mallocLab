@@ -28,6 +28,10 @@
 /* Configuration macros*/ 
 /*#define NEXT_FIT  [>policy<] */
 #define LIFO
+/* NUM_LINEAR and NUM_INF should be in power of 2*/ 
+#define NUM_LINEAR 1  /*The number of linear seg list*/ 
+#define NUM_INF 2048  /*Infinite threshold of seg list*/ 
+#define NUM_LIST 12
 
 /* do not change the following! */
 #ifdef DRIVER
@@ -48,52 +52,66 @@
 /* Basic constants and macros */
 #define WSIZE       4       /* Word and header/footer size (bytes) */ 
 #define DSIZE       8       /* Doubleword size (bytes) */
-#define CHUNKSIZE  (1<<12)  /* Extend heap by this amount (bytes) */ 
+#define CHUNKSIZE  128  /* Extend heap by this amount (bytes) */ 
 
 #define MAX(x, y) ((x) > (y)? (x) : (y))  
 
 /* Pack a size and allocated bit into a word */
-#define PACK(size, alloc)  ((size) | (alloc)) //line:vm:mm:pack
+#define PACK(size, alloc)  ((size) | (alloc))
 
 /* Read and write a word at address p */
-#define GET(p)       (*(unsigned int *)(p))            //line:vm:mm:get
-#define PUT(p, val)  (*(unsigned int *)(p) = (val))    //line:vm:mm:put
+#define GET(p)       (*(unsigned int *)(p))
+#define PUT(p, val)  (*(unsigned int *)(p) = (val))
 
 /* Read the size and allocated fields from address p */
-#define GET_SIZE(p)  (GET(p) & ~0x7)                   //line:vm:mm:getsize
-#define GET_ALLOC(p) (GET(p) & 0x1)                    //line:vm:mm:getalloc
+#define GET_SIZE(p)  (GET(p) & ~0x7)
+#define GET_ALLOC(p) (GET(p) & 0x1)
 
 /* Given block ptr bp, compute address of its header and footer */
-#define HDRP(bp)       ((char *)(bp) - WSIZE)                      //line:vm:mm:hdrp
-#define FTRP(bp)       ((char *)(bp) + GET_SIZE(HDRP(bp)) - DSIZE) //line:vm:mm:ftrp
+#define HDRP(bp)       ((char *)(bp) - WSIZE)
+#define FTRP(bp)       ((char *)(bp) + GET_SIZE(HDRP(bp)) - DSIZE)
 
 /* Given block ptr bp, compute address of next and previous blocks */
-#define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(((char *)(bp) - WSIZE))) //line:vm:mm:nextblkp
-#define PREV_BLKP(bp)  ((char *)(bp) - GET_SIZE(((char *)(bp) - DSIZE))) //line:vm:mm:prevblkp
+#define NEXT_BLKP(bp)  ((char *)(bp) + GET_SIZE(((char *)(bp) - WSIZE)))
+#define PREV_BLKP(bp)  ((char *)(bp) - GET_SIZE(((char *)(bp) - DSIZE)))
 
 /* Given free block ptr bp, compute address or address pointer of the
  * next and previous blocks */ 
 #define NEXT_FBLKP(bp)  ((char*)(bp)) 
 #define PREV_FBLKP(bp)  ((char*)(bp + WSIZE))
 
-/* To store or get a double word size address in a wsize space*/ 
-static inline void put_addr(void *bp, void *value) {
-    if((size_t*)value != 0) /* Truncate the value into wsize(8 bytes)*/ 
-        *(unsigned int*)bp = (unsigned int)(size_t)value;
-    else
-        *(unsigned int*)bp = 0;
+/*
+ * Return true if address is valid with 0x8XXXXXXXX format
+ */
+static inline int is_addr(void *bp) {
+    return (((unsigned long long)bp >> 32) == 0x8);
 }
 
+/* 
+ * To store or get a double word size address in a wsize space
+ */ 
+static inline void put_addr(void *bp, void *value) {
+    if(is_addr(value)) /* Truncate the value into wsize(8 bytes)*/ 
+        *(unsigned int*)bp = (unsigned int)(size_t)value;
+    else
+        *(int*)bp = (int)(long)value; 
+}
+
+/*
+ * Get address(8 bytes) from a word size(4 bytes) space
+ * return 0x8xxxxxxxx if it is a valid address
+ * else return the list number since it should be at the begining of a list
+ */ 
 static inline void *get_addr(void *bp) {
-    if(*(unsigned int*)bp != 0)
+    if(*(int*)bp > 0)
         return (void *)(((unsigned long long)0x8<<32) | *(unsigned int*)bp);
     else
-        return (void *)0;
+        return (void *)((long)(-(*(int*)bp)));
 }
 
 /* Global variables */
 static char *heap_listp = 0;  /* Pointer to first block */ 
-static char *fb_listp;  /* Pointer to the free block list for explicit list*/
+static char **seg_listp;
 #ifdef NEXT_FIT
 static char *rover;           /* Next fit rover */
 #endif
@@ -103,9 +121,14 @@ static void *extend_heap(size_t words);
 static void *coalesce(void* bp);
 static void place(void* bp, size_t asize);
 static void *find_fit(size_t asize);
+static int find_list(size_t asize);
+static int find_list_fit(size_t asize);
 static void printblock(void* bp);
 static void checkblock(void* bp);
 static int checkfreelist(void *flist, int verbose);
+static int init_seglist();
+static inline void insert(int list_num, void* bp);
+static inline void delete(void* bp);
 
 /* An interupt handler function for debugging*/ 
 void fl_timeout()
@@ -119,18 +142,19 @@ void fl_timeout()
  */
 int mm_init(void) {
     
-    if ((fb_listp = mem_sbrk(2*WSIZE)) == (void *)-1) //line:vm:mm:begininit
+    if(init_seglist() == -1) {
+        printf("fail to init seg list!\n");
         return -1;
-    fb_listp = 0;
+    }
 
     /* Create the initial empty heap */
-    if ((heap_listp = mem_sbrk(4*WSIZE)) == (void *)-1) //line:vm:mm:begininit
+    if ((heap_listp = mem_sbrk(4*WSIZE)) == (void *)-1)
         return -1;
     PUT(heap_listp, 0);                          /* Alignment padding */
     PUT(heap_listp + (1*WSIZE), PACK(DSIZE, 1)); /* Prologue header */ 
     PUT(heap_listp + (2*WSIZE), PACK(DSIZE, 1)); /* Prologue footer */ 
     PUT(heap_listp + (3*WSIZE), PACK(0, 1));     /* Epilogue header */
-    heap_listp += (2*WSIZE);                     //line:vm:mm:endinit  
+    heap_listp += (2*WSIZE);
 
 #ifdef NEXT_FIT
     rover = heap_listp;
@@ -143,6 +167,20 @@ int mm_init(void) {
     return 0;
 }
 
+static int init_seglist(){
+
+    dbg_printf("the number of list is %d\n", NUM_LIST);
+
+    if ((seg_listp = mem_sbrk(2*WSIZE * NUM_LIST)) == (void *)-1)
+        return -1;
+
+    for (int i = 0; i < NUM_LIST; i++){
+        seg_listp[i] = 0;
+    }
+
+    return 1;
+}
+
 /*
  * malloc
  */
@@ -151,7 +189,7 @@ void *malloc (size_t size) {
     size_t extendsize; /* Amount to extend heap if no fit */
     char *bp;      
 
-    dbg_printf("starting malloc\n");
+    dbg_printf("starting malloc(%d)\n", (int)size);
     if (heap_listp == 0){
         mm_init();
     }
@@ -199,11 +237,8 @@ void free (void *ptr) {
     PUT(HDRP(ptr), PACK(size, 0));
     PUT(FTRP(ptr), PACK(size, 0));
     
-    put_addr(PREV_FBLKP(ptr), 0);
-    put_addr(NEXT_FBLKP(ptr), fb_listp);
-    if(fb_listp != 0)
-        put_addr(PREV_FBLKP(fb_listp), ptr);
-    fb_listp = ptr;
+    int list_num = find_list(size);
+    insert(list_num, ptr);
 
     coalesce(ptr);
 }
@@ -216,6 +251,7 @@ void *realloc(void *oldptr, size_t size) {
     void *newptr;
 
     dbg_printf("It's in realloc !!\n");
+
     /* If size == 0 then this is just free, and we return NULL. */
     if(size == 0) {
         free(oldptr);
@@ -251,13 +287,13 @@ void *realloc(void *oldptr, size_t size) {
  * needed to run the traces.
  */
 void *calloc (size_t nmemb, size_t size) {
-  size_t bytes = nmemb * size;
-  void *newptr;
+    size_t bytes = nmemb * size;
+    void *newptr;
 
-  newptr = malloc(bytes);
-  memset(newptr, 0, bytes);
+    newptr = malloc(bytes);
+    memset(newptr, 0, bytes);
 
-  return newptr;
+    return newptr;
 }
 
 
@@ -296,14 +332,17 @@ void mm_checkheap(int verbose) {
         checkblock(bp);
     }
 
-    checkfreelist(fb_listp, verbose);
+    for (int i = 0; i < NUM_LIST; i++){
+        if (verbose == 4)
+            printf("Segregated list: %d\n", i);
+        checkfreelist(seg_listp[i], verbose);
+    }
 
     if (verbose == 3)
         printblock(bp);
 
     if ((GET_SIZE(HDRP(bp)) != 0) || !(GET_ALLOC(HDRP(bp))))
         printf("Bad epilogue header\n");
-
 }
 
 /*
@@ -323,21 +362,8 @@ static void *extend_heap(size_t words){
     PUT(HDRP(bp), PACK(size, 0)); /*Free block header*/ 
     PUT(FTRP(bp), PACK(size, 0)); /*Free block Footer*/ 
 #ifdef LIFO 
-    /*Initialize the free block list*/ 
-    if(fb_listp == 0) {
-        put_addr(NEXT_FBLKP(bp), 0);
-        put_addr(PREV_FBLKP(bp), 0);
-        fb_listp = bp;
-        dbg_printf("Initialized the free block list\n");
-    }
-    else {
-    /*Modify the free block list*/ 
-        char *old = fb_listp;
-        fb_listp = bp;
-        put_addr(PREV_FBLKP(fb_listp), 0);
-        put_addr(NEXT_FBLKP(fb_listp), old);
-        put_addr(PREV_FBLKP(old), fb_listp);
-    }
+    int list_num = find_list(size);
+    insert(list_num, bp);
 #endif
     PUT(HDRP(NEXT_BLKP(bp)), PACK(0, 1)); /*The new epilogue block*/ 
 
@@ -349,7 +375,6 @@ static void* coalesce(void *bp) {
     size_t prev_alloc = GET_ALLOC(FTRP(PREV_BLKP(bp)));
     size_t next_alloc = GET_ALLOC(HDRP(NEXT_BLKP(bp)));
     size_t size = GET_SIZE(HDRP(bp));
-    char *old_nextp, *old_prevp;
 
     if (prev_alloc && next_alloc) {            /* Case 1 */
         return bp;
@@ -358,53 +383,42 @@ static void* coalesce(void *bp) {
     else if (prev_alloc && !next_alloc) {      /* Case 2 */
         dbg_printf("coalasce case 2\n");
         char *oldnext_blkp = NEXT_BLKP(bp);
-        old_nextp = get_addr(NEXT_FBLKP(oldnext_blkp));
-        old_prevp = get_addr(PREV_FBLKP(oldnext_blkp));
+
+        delete(bp);
+        delete(oldnext_blkp);
 
         size += GET_SIZE(HDRP(oldnext_blkp));
         PUT(HDRP(bp), PACK(size, 0));
         PUT(FTRP(bp), PACK(size,0));
-        
-        put_addr(NEXT_FBLKP(old_prevp), old_nextp);
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), old_prevp);
+
+        int list_num = find_list(size);
+        insert(list_num, bp);
     }
 
     else if (!prev_alloc && next_alloc) {      /* Case 3 */
         dbg_printf("coalasce case 3\n");
-        char *old_blkp = fb_listp;
         char *oldprev_blkp = PREV_BLKP(bp);
-        old_nextp = get_addr(NEXT_FBLKP(oldprev_blkp));
-        old_prevp = get_addr(PREV_FBLKP(oldprev_blkp));
         
+        delete(bp);
+        delete(oldprev_blkp);
+
         size += GET_SIZE(HDRP(PREV_BLKP(bp)));
         PUT(FTRP(bp), PACK(size, 0));
         PUT(HDRP(PREV_BLKP(bp)), PACK(size, 0));
         bp = PREV_BLKP(bp);
       
-        fb_listp = bp;
-
-        put_addr(NEXT_FBLKP(old_prevp), old_nextp);
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), old_prevp);
-
-        put_addr(NEXT_FBLKP(fb_listp), get_addr(NEXT_FBLKP(old_blkp)));
-        if(get_addr(NEXT_FBLKP(fb_listp)) != 0)
-            put_addr(PREV_FBLKP(get_addr(NEXT_FBLKP(fb_listp))), fb_listp);
-        put_addr(PREV_FBLKP(fb_listp), 0);
-
-        
-        /*[> The coalesced block are adjacent<] 
-        if(get_addr(NEXT_FBLKP(fb_listp)) == fb_listp)
-            put_addr(NEXT_FBLKP(fb_listp), old_nextp);
-        put_addr(PREV_FBLKP(fb_listp), 0);*/
+        int list_num = find_list(size);
+        insert(list_num, bp);
     }
 
     else {                                     /* Case 4 */
         dbg_printf("coalasce case 4\n");
-        char *old_blkp = fb_listp;
         char *oldprev_blkp = PREV_BLKP(bp);
         char *oldnext_blkp = NEXT_BLKP(bp);
+
+        delete(bp);
+        delete(oldprev_blkp);
+        delete(oldnext_blkp);
 
         size += GET_SIZE(HDRP(oldprev_blkp)) + 
             GET_SIZE(FTRP(oldnext_blkp));
@@ -412,28 +426,8 @@ static void* coalesce(void *bp) {
         PUT(FTRP(NEXT_BLKP(bp)), PACK(size, 0));
         bp = PREV_BLKP(bp);
 
-        fb_listp = bp;
-        old_nextp = get_addr(NEXT_FBLKP(oldprev_blkp));
-        old_prevp = get_addr(PREV_FBLKP(oldprev_blkp));
-        put_addr(NEXT_FBLKP(old_prevp), old_nextp);
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), old_prevp);
-
-        put_addr(NEXT_FBLKP(fb_listp), get_addr(NEXT_FBLKP(old_blkp)));
-        if(get_addr(NEXT_FBLKP(fb_listp)) != 0)
-            put_addr(PREV_FBLKP(get_addr(NEXT_FBLKP(fb_listp))), fb_listp);
-        put_addr(PREV_FBLKP(fb_listp), 0);
-        
-        /*if(get_addr(NEXT_FBLKP(fb_listp)) == fb_listp)
-            put_addr(NEXT_FBLKP(fb_listp), old_nextp);
-        put_addr(PREV_FBLKP(fb_listp), 0);*/
-        
-        old_nextp = get_addr(NEXT_FBLKP(oldnext_blkp));
-        old_prevp = get_addr(PREV_FBLKP(oldnext_blkp));
-        put_addr(NEXT_FBLKP(old_prevp), old_nextp);
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), old_prevp);
-
+        int list_num = find_list(size);
+        insert(list_num, bp);
     }
 #ifdef NEXT_FIT
     /* Make sure the rover isn't pointing into the free block */
@@ -450,43 +444,93 @@ static void* coalesce(void *bp) {
  */
 static void place(void *bp, size_t asize) {
     size_t csize = GET_SIZE(HDRP(bp));
+    size_t remainder = csize - asize;
     char *old = bp;
     void *old_nextp = get_addr(NEXT_FBLKP(old));
     void *old_prevp = get_addr(PREV_FBLKP(old));
 
-    if((csize - asize) >= (2 * DSIZE)) {
+    if(remainder >= (2 * DSIZE)) {
         PUT(HDRP(bp), PACK(asize, 1));
         PUT(FTRP(bp), PACK(asize, 1));
         bp = NEXT_BLKP(bp);
 
-        /*Initialize the new free block*/ 
-        put_addr(NEXT_FBLKP(bp), old_nextp);
-        put_addr(PREV_FBLKP(bp), old_prevp);
+        PUT(HDRP(bp), PACK(remainder, 0));
+        PUT(FTRP(bp), PACK(remainder, 0)); 
 
-        if(old_prevp != 0) 
-            put_addr(NEXT_FBLKP(old_prevp), bp);
-        else /*The free block is at the beginning of free list*/ 
-            fb_listp = bp;
 
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), bp);
+        if(is_addr(old_prevp)) 
+            put_addr(NEXT_FBLKP(old_prevp), old_nextp);
+        else
+            seg_listp[(long)old_prevp] = old_nextp;
 
-        PUT(HDRP(bp), PACK(csize-asize, 0));
-        PUT(FTRP(bp), PACK(csize-asize, 0)); 
+        if(old_nextp != 0){
+            if(is_addr(old_prevp))
+                put_addr(PREV_FBLKP(old_nextp), old_prevp);
+            else
+                put_addr(PREV_FBLKP(old_nextp), (void *)-((long)(old_prevp)));
+        }
+        
+        dbg_printf("remainder bigger than 2 DW, split!\n");
+        int list_num = find_list(remainder);
+        insert(list_num, bp);
     }
     else { /*The remainder is less than 2 double words, thus no split*/ 
         PUT(HDRP(bp), PACK(csize, 1));
         PUT(FTRP(bp), PACK(csize, 1));
 
         dbg_printf("remainder less than 2 double words\n");
-        if(old_prevp != 0) 
+        if(is_addr(old_prevp)) 
             put_addr(NEXT_FBLKP(old_prevp), old_nextp);
-        else /*The free block is at the beginning of free list*/ 
-            fb_listp = old_nextp;
-        dbg_printf("old_nextp: %p\n", old_nextp);
-        dbg_printf("old_prevp: %p\n", old_prevp);
-        if(old_nextp != 0)
-            put_addr(PREV_FBLKP(old_nextp), old_prevp);
+        else
+            seg_listp[(long)old_prevp] = old_nextp;
+
+        if(old_nextp != 0){
+            if(is_addr(old_prevp))
+                put_addr(PREV_FBLKP(old_nextp), old_prevp);
+            else
+                put_addr(PREV_FBLKP(old_nextp), (void *)-((long)(old_prevp)));
+        }
+    }
+}
+
+/*
+ * Insert a free block at the top of list: list_num
+ */ 
+static inline void insert(int list_num, void* bp) {
+    char *old = seg_listp[list_num];
+
+    if(old == 0) { /*The list: list_num has not been initialized*/ 
+        seg_listp[list_num] = bp;
+        put_addr(NEXT_FBLKP(bp), 0);
+        put_addr(PREV_FBLKP(bp), (void*)(long)(-(list_num)));
+    } 
+    else {  
+        seg_listp[list_num] = bp;
+        put_addr(NEXT_FBLKP(bp), old);
+        put_addr(PREV_FBLKP(old), bp);
+        put_addr(PREV_FBLKP(bp), (void*)(long)(-(list_num)));
+    }
+}
+
+
+static inline void delete(void* bp) {
+
+    char *prevp = get_addr(PREV_FBLKP(bp));
+    char *nextp = get_addr(NEXT_FBLKP(bp));
+
+    if (is_addr(prevp)) {
+        put_addr(NEXT_FBLKP(prevp), nextp);
+        if(nextp != 0){
+            put_addr(PREV_FBLKP(nextp), prevp);
+        }
+    } else {
+        int list_num =(int)(long)(prevp);
+        if(nextp != 0){
+            put_addr(PREV_FBLKP(nextp), (void*)(-(long)list_num));
+            seg_listp[list_num] = nextp;
+        } else {
+            seg_listp[list_num] = 0;
+        }
     }
 }
 
@@ -495,32 +539,73 @@ static void place(void *bp, size_t asize) {
  */
 static void *find_fit(size_t asize){
 #ifdef NEXT_FIT 
-    /* Next fit search */
-    char *oldrover = rover;
 
-    /* Search from the rover to the end of list */
-    for ( ; GET_SIZE(HDRP(rover)) > 0; rover = NEXT_BLKP(rover))
-        if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
-            return rover;
-
-    /* search from start of list to old rover */
-    for (rover = heap_listp; rover < oldrover; rover = NEXT_BLKP(rover))
-        if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
-            return rover;
-
-    return NULL;  /* no fit found */
 #else 
+    dbg_printf("finding_fit! \n");
     /* First fit search */
     void *bp;
 /*may have problem */ 
-    for (bp = fb_listp; (bp!=NULL) && ((get_addr(NEXT_FBLKP(bp)) != 0) 
-    || (get_addr(PREV_FBLKP(bp)) == 0)); bp = get_addr(NEXT_FBLKP(bp))) {
-        if (asize <= GET_SIZE(HDRP(bp))) {
-            return bp;
+    int list_num = find_list_fit(asize);
+    if(list_num != -1){
+        while(list_num < NUM_LIST){
+            dbg_printf("the list number is %d\n", list_num);
+            for (bp = seg_listp[list_num]; (bp != NULL) && ((get_addr(NEXT_FBLKP(bp)) != 0) 
+                || ((int)(long)get_addr(PREV_FBLKP(bp)) == list_num));
+                bp = get_addr(NEXT_FBLKP(bp))) {
+                if (asize <= GET_SIZE(HDRP(bp))) {
+                    return bp;
+                }
+            }
+            list_num++;
         }
     }
+    dbg_printf("found no fit!\n");
     return NULL; /* No fit */
 #endif
+}
+
+/* 
+ * Find the seg list number according to the size
+ * Return -1 if no list is available, 
+ * else return the list num, starts from 0
+ * */ 
+static int find_list_fit (size_t asize) {
+   int cur_list = find_list(asize); 
+
+    if (seg_listp[cur_list] != 0) {
+        return cur_list;
+    }
+    else {
+        for (int i = cur_list; i < (NUM_LIST-1); i++) {
+            cur_list++;
+            if (seg_listp[cur_list] != 0){
+                return cur_list;
+            }
+        }
+    }
+    return -1;
+} 
+
+static int find_list(size_t asize){
+    int num_blocks = asize / (DSIZE);
+    int cur_list;
+
+    if (num_blocks <= NUM_LINEAR) {
+        cur_list = num_blocks-2;
+    }
+    else if (num_blocks <= NUM_INF) {
+        int tmp = num_blocks;
+        cur_list = NUM_LINEAR-1;
+        while (!((tmp >= NUM_LINEAR) && (tmp <= (NUM_LINEAR<<1)))){
+            cur_list++;
+            tmp = tmp>>1;
+        }
+    }
+    else {
+        cur_list = NUM_LIST-1;
+    }
+    
+    return cur_list;
 }
 
 static void printblock(void *bp) 
@@ -555,12 +640,17 @@ static int checkfreelist(void *flist, int verbose)
     signal(SIGALRM, fl_timeout);
     alarm(3);
     char *bp;
-    for(bp = flist; bp!=0 && ((get_addr(NEXT_FBLKP(bp)) != 0) || (get_addr(PREV_FBLKP(bp)) == 0));
-    bp = get_addr(NEXT_FBLKP(bp))){
+    for(bp = flist; bp!=0 && ((get_addr(NEXT_FBLKP(bp)) != 0) || 
+        !is_addr(get_addr(PREV_FBLKP(bp)))); bp = get_addr(NEXT_FBLKP(bp))){
         char *prevfb = get_addr(PREV_FBLKP(bp));
         char *nextfb = get_addr(NEXT_FBLKP(bp));
 
-        if( prevfb != 0){
+        if(is_addr(prevfb)){
+            if (bp != get_addr(NEXT_FBLKP(prevfb)))
+                printf("Error: The next block: %p of the previous block: %p \
+                        doesn't match current block: %p", get_addr(NEXT_FBLKP(prevfb)),
+                        prevfb, bp);
+
             if(!in_heap(prevfb)){
                 printf("Error: previous block %p in the free list is not in heap\n", prevfb);
                 return -1;
@@ -570,12 +660,17 @@ static int checkfreelist(void *flist, int verbose)
         }
 
         if(nextfb != 0){
-        if(!in_heap(nextfb)){
-            printf("Error: next block %p in the free list is not in heap\n", nextfb);
-            return -1;
-        }
-        if(!aligned(nextfb))
-            printf("Error: next block %p in the free list is not aligned\n", nextfb);
+            if (bp != get_addr(PREV_FBLKP(nextfb)))
+                printf("Error: The previous block: %p of the next block: %p \
+                        doesn't match current block: %p", get_addr(PREV_FBLKP(nextfb)), 
+                        nextfb, bp);
+
+            if(!in_heap(nextfb)){
+                printf("Error: next block %p in the free list is not in heap\n", nextfb);
+                return -1;
+            }
+            if(!aligned(nextfb))
+                printf("Error: next block %p in the free list is not aligned\n", nextfb);
         }
 
         if(verbose == 4){

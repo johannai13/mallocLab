@@ -6,15 +6,15 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 ALIGNMENT	config.h	107;"	d
 ALIGNMENT	mm-naive.c	41;"	d	file:
-ALIGNMENT	mm.c	42;"	d	file:
+ALIGNMENT	mm.c	46;"	d	file:
 ALIGN	mm-naive.c	44;"	d	file:
-ALIGN	mm.c	45;"	d	file:
+ALIGN	mm.c	49;"	d	file:
 ALLOC	mdriver.c	/^    enum { ALLOC, FREE, REALLOC } type; \/* type of request *\/$/;"	e	enum:__anon1::__anon2	file:
 ASSERT	contracts.h	16;"	d
 ASSERT	contracts.h	22;"	d
 CACHE_BLOCK	fcyc.c	24;"	d	file:
 CACHE_BYTES	fcyc.c	23;"	d	file:
-CHUNKSIZE	mm.c	51;"	d	file:
+CHUNKSIZE	mm.c	55;"	d	file:
 CLEAR_CACHE	fcyc.c	22;"	d	file:
 COMPENSATE	fcyc.c	21;"	d	file:
 DBG_CHEAP	mdriver.c	/^static enum { DBG_NONE, DBG_CHEAP, DBG_EXPENSIVE } debug_mode = DBG_CHEAP;$/;"	e	enum:__anon6	file:
@@ -22,17 +22,17 @@ DBG_EXPENSIVE	mdriver.c	/^static enum { DBG_NONE, DBG_CHEAP, DBG_EXPENSIVE } deb
 DBG_NONE	mdriver.c	/^static enum { DBG_NONE, DBG_CHEAP, DBG_EXPENSIVE } debug_mode = DBG_CHEAP;$/;"	e	enum:__anon6	file:
 DEBUG	mm-naive.c	23;"	d	file:
 DEFAULT_TRACEFILES	config.h	31;"	d
-DSIZE	mm.c	50;"	d	file:
+DSIZE	mm.c	54;"	d	file:
 ENSURES	contracts.h	18;"	d
 ENSURES	contracts.h	24;"	d
 EPSILON	fcyc.c	20;"	d	file:
 FREE	mdriver.c	/^    enum { ALLOC, FREE, REALLOC } type; \/* type of request *\/$/;"	e	enum:__anon1::__anon2	file:
-FTRP	mm.c	68;"	d	file:
-GET_ALLOC	mm.c	64;"	d	file:
-GET_SIZE	mm.c	63;"	d	file:
-GET	mm.c	59;"	d	file:
+FTRP	mm.c	72;"	d	file:
+GET_ALLOC	mm.c	68;"	d	file:
+GET_SIZE	mm.c	67;"	d	file:
+GET	mm.c	63;"	d	file:
 HDRLINES	mdriver.c	34;"	d	file:
-HDRP	mm.c	67;"	d	file:
+HDRP	mm.c	71;"	d	file:
 IS_ALIGNED	mdriver.c	38;"	d	file:
 KEEP_SAMPLES	fcyc.c	41;"	d	file:
 KEEP_VALS	fcyc.c	40;"	d	file:
@@ -45,17 +45,20 @@ MAX_ETIME	ftimer.c	61;"	d	file:
 MAX_HEAP	config.h	112;"	d
 MAX_SPACE	config.h	94;"	d
 MAX_SPEED	config.h	88;"	d
-MAX	mm.c	53;"	d	file:
+MAX	mm.c	57;"	d	file:
 MIN_SPACE	config.h	81;"	d
 MIN_SPEED	config.h	75;"	d
 Mhz	fsecs.c	/^static double Mhz;  \/* estimated CPU clock frequency *\/$/;"	v	file:
 NEVENT	clock.c	226;"	d	file:
-NEXT_BLKP	mm.c	71;"	d	file:
-NEXT_FBLKP	mm.c	76;"	d	file:
-PACK	mm.c	56;"	d	file:
-PREV_BLKP	mm.c	72;"	d	file:
-PREV_FBLKP	mm.c	77;"	d	file:
-PUT	mm.c	60;"	d	file:
+NEXT_BLKP	mm.c	75;"	d	file:
+NEXT_FBLKP	mm.c	80;"	d	file:
+NUM_INF	mm.c	33;"	d	file:
+NUM_LINEAR	mm.c	32;"	d	file:
+NUM_LIST	mm.c	34;"	d	file:
+PACK	mm.c	60;"	d	file:
+PREV_BLKP	mm.c	76;"	d	file:
+PREV_FBLKP	mm.c	81;"	d	file:
+PUT	mm.c	64;"	d	file:
 RANDOM_DATA_LEN	mdriver.c	121;"	d	file:
 REALLOC	mdriver.c	/^    enum { ALLOC, FREE, REALLOC } type; \/* type of request *\/$/;"	e	enum:__anon1::__anon2	file:
 RECORDTHRESH	clock.c	228;"	d	file:
@@ -72,7 +75,7 @@ UTIL_WEIGHT	config.h	102;"	d
 WALL	mdriver.c	42;"	d	file:
 WNONE	mdriver.c	41;"	d	file:
 WPERF	mdriver.c	44;"	d	file:
-WSIZE	mm.c	49;"	d	file:
+WSIZE	mm.c	53;"	d	file:
 WUTIL	mdriver.c	43;"	d	file:
 __CONFIG_H_	config.h	2;"	d
 access_counter	clock.c	/^void access_counter(unsigned *hi, unsigned *lo)$/;"	f
@@ -89,7 +92,7 @@ cache_buf	fcyc.c	/^static int *cache_buf = NULL;$/;"	v	file:
 cache_bytes	fcyc.c	/^static int cache_bytes = CACHE_BYTES;$/;"	v	file:
 callibrate	clock.c	/^static void callibrate(int verbose)$/;"	f	file:
 calloc	mm-naive.c	37;"	d	file:
-calloc	mm.c	38;"	d	file:
+calloc	mm.c	42;"	d	file:
 calloc	mm-naive.c	/^void *calloc (size_t nmemb, size_t size)$/;"	f
 calloc	mm.c	/^void *calloc (size_t nmemb, size_t size) {$/;"	f
 check_index	mdriver.c	/^static void check_index(const trace_t *trace, int opnum, int index) {$/;"	f	file:
@@ -111,6 +114,8 @@ dbg_printf	mm.c	23;"	d	file:
 dbg_printf	mm.c	25;"	d	file:
 debug_mode	mdriver.c	/^static enum { DBG_NONE, DBG_CHEAP, DBG_EXPENSIVE } debug_mode = DBG_CHEAP;$/;"	v	typeref:enum:__anon6	file:
 default_tracefiles	mdriver.c	/^static char *default_tracefiles[] = {$/;"	v	file:
+delete	mm.c	/^static void delete(int list_num, void* bp) {$/;"	f	file:
+divide_chunk	mm.c	/^static void divide_chunk(void *bp) {$/;"	f	file:
 epsilon	fcyc.c	/^static double epsilon = EPSILON;$/;"	v	file:
 errors	mdriver.c	/^static int errors = 0;  \/* number of errs found when running student malloc *\/$/;"	v	file:
 eval_libc_speed	mdriver.c	/^static void eval_libc_speed(void *ptr)$/;"	f	file:
@@ -119,18 +124,19 @@ eval_mm_speed	mdriver.c	/^static void eval_mm_speed(void *ptr)$/;"	f	file:
 eval_mm_util	mdriver.c	/^static double eval_mm_util(trace_t *trace, int tracenum)$/;"	f	file:
 eval_mm_valid	mdriver.c	/^static int eval_mm_valid(trace_t *trace, range_t **ranges)$/;"	f	file:
 extend_heap	mm.c	/^static void *extend_heap(size_t words){$/;"	f	file:
-fb_listp	mm.c	/^static char *fb_listp;  \/* Pointer to the free block list for explicit list*\/$/;"	v	file:
 fcyc	fcyc.c	/^double fcyc(test_funct f, void *argp)$/;"	f
 filename	mdriver.c	/^    char filename[MAXLINE];$/;"	m	struct:__anon3	file:
 filename	mdriver.c	/^    char filename[MAXLINE];$/;"	m	struct:__anon5	file:
 find_fit	mm.c	/^static void *find_fit(size_t asize){$/;"	f	file:
+find_list_fit	mm.c	/^static int find_list_fit (size_t asize) {$/;"	f	file:
+find_list	mm.c	/^static int find_list(size_t asize){$/;"	f	file:
 first_p	ftimer.c	/^static struct itimerval first_p; \/* prof time*\/$/;"	v	typeref:struct:itimerval	file:
 first_r	ftimer.c	/^static struct itimerval first_r; \/* real time *\/$/;"	v	typeref:struct:itimerval	file:
 first_u	ftimer.c	/^static struct itimerval first_u; \/* user time *\/$/;"	v	typeref:struct:itimerval	file:
 fl_timeout	mm.c	/^void fl_timeout()$/;"	f
 free_trace	mdriver.c	/^static void free_trace(trace_t *trace)$/;"	f	file:
 free	mm-naive.c	35;"	d	file:
-free	mm.c	36;"	d	file:
+free	mm.c	40;"	d	file:
 free	mm-naive.c	/^void free(void *ptr){$/;"	f
 free	mm.c	/^void free (void *ptr) {$/;"	f
 fsecs_test_funct	fsecs.h	/^typedef void (*fsecs_test_funct)(void *);$/;"	t
@@ -155,12 +161,15 @@ init_etime	ftimer.c	/^static void init_etime(void)$/;"	f	file:
 init_fsecs	fsecs.c	/^void init_fsecs(void)$/;"	f
 init_random_data	mdriver.c	/^static void init_random_data(void) {$/;"	f	file:
 init_sampler	fcyc.c	/^static void init_sampler()$/;"	f	file:
+init_seglist	mm.c	/^static int init_seglist(){$/;"	f	file:
+insert	mm.c	/^static void insert(int list_num, void* bp) {$/;"	f	file:
+is_addr	mm.c	/^static inline int is_addr(void *bp) {$/;"	f	file:
 kbest	fcyc.c	/^static int kbest = K;$/;"	v	file:
 lo	mdriver.c	/^    char *lo;              \/* low payload address *\/$/;"	m	struct:range_t	file:
 main	mdriver.c	/^int main(int argc, char **argv)$/;"	f
 malloc_error	mdriver.c	/^void malloc_error(const trace_t *trace, int opnum, const char *fmt, ...)$/;"	f
 malloc	mm-naive.c	34;"	d	file:
-malloc	mm.c	35;"	d	file:
+malloc	mm.c	39;"	d	file:
 malloc	mm-naive.c	/^void *malloc(size_t size)$/;"	f
 malloc	mm.c	/^void *malloc (size_t size) {$/;"	f
 maxsamples	fcyc.c	/^static int maxsamples = MAXSAMPLES;$/;"	v	file:
@@ -200,7 +209,7 @@ range_t	mdriver.c	/^} range_t;$/;"	t	typeref:struct:range_t	file:
 ranges	mdriver.c	/^    range_t *ranges;$/;"	m	struct:__anon4	file:
 read_trace	mdriver.c	/^static trace_t *read_trace(stats_t *stats, const char *tracedir,$/;"	f	file:
 realloc	mm-naive.c	36;"	d	file:
-realloc	mm.c	37;"	d	file:
+realloc	mm.c	41;"	d	file:
 realloc	mm-naive.c	/^void *realloc(void *oldptr, size_t size)$/;"	f
 realloc	mm.c	/^void *realloc(void *oldptr, size_t size) {$/;"	f
 reinit_trace	mdriver.c	/^static void reinit_trace(trace_t *trace)$/;"	f	file:
@@ -210,6 +219,7 @@ run_tests	mdriver.c	/^static void run_tests(int num_tracefiles, const char *trac
 samplecount	fcyc.c	/^static int samplecount = 0;$/;"	v	file:
 samples	fcyc.c	/^static double *samples = NULL;$/;"	v	file:
 secs	mdriver.c	/^    double secs;     \/* number of secs needed to run the trace *\/$/;"	m	struct:__anon5	file:
+seg_listp	mm.c	/^static char **seg_listp;$/;"	v	file:
 set_fcyc_cache_block	fcyc.c	/^void set_fcyc_cache_block(int bytes) {$/;"	f
 set_fcyc_cache_size	fcyc.c	/^void set_fcyc_cache_size(int bytes)$/;"	f
 set_fcyc_clear_cache	fcyc.c	/^void set_fcyc_clear_cache(int clear)$/;"	f

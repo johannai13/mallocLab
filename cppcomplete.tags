@@ -4,12 +4,12 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ALIGN	mm.c	44;"	d	file:
-ALIGNMENT	mm.c	41;"	d	file:
+ALIGN	mm.c	49;"	d	file:
+ALIGNMENT	mm.c	46;"	d	file:
 BIG_ENDIAN	/usr/include/endian.h	47;"	d
 BUFSIZ	/usr/include/stdio.h	128;"	d
 BYTE_ORDER	/usr/include/endian.h	49;"	d
-CHUNKSIZE	mm.c	50;"	d	file:
+CHUNKSIZE	mm.c	55;"	d	file:
 CLK_TCK	/usr/include/bits/time.h	41;"	d
 CLK_TCK	/usr/include/time.h	47;"	d
 CLOCKS_PER_SEC	/usr/include/bits/time.h	34;"	d
@@ -20,8 +20,8 @@ CLOCK_PROCESS_CPUTIME_ID	/usr/include/bits/time.h	50;"	d
 CLOCK_REALTIME	/usr/include/bits/time.h	46;"	d
 CLOCK_REALTIME_COARSE	/usr/include/bits/time.h	56;"	d
 CLOCK_THREAD_CPUTIME_ID	/usr/include/bits/time.h	52;"	d
-DEBUG	mm.c	20;"	d	file:
-DSIZE	mm.c	49;"	d	file:
+DEBUG	mm.c	21;"	d	file:
+DSIZE	mm.c	54;"	d	file:
 EOF	/usr/include/stdio.h	135;"	d
 EXIT_FAILURE	/usr/include/stdlib.h	134;"	d
 EXIT_SUCCESS	/usr/include/stdlib.h	135;"	d
@@ -31,31 +31,35 @@ FD_SET	/usr/include/sys/select.h	93;"	d
 FD_SETSIZE	/usr/include/sys/select.h	81;"	d
 FD_ZERO	/usr/include/sys/select.h	96;"	d
 FILE	/usr/include/stdio.h	49;"	t	typeref:struct:_IO_FILE
-FTRP	mm.c	67;"	d	file:
+FTRP	mm.c	72;"	d	file:
 F_LOCK	/usr/include/unistd.h	1086;"	d
 F_OK	/usr/include/unistd.h	285;"	d
 F_TEST	/usr/include/unistd.h	1088;"	d
 F_TLOCK	/usr/include/unistd.h	1087;"	d
 F_ULOCK	/usr/include/unistd.h	1085;"	d
-GET	mm.c	58;"	d	file:
-GET_ALLOC	mm.c	63;"	d	file:
-GET_SIZE	mm.c	62;"	d	file:
-HDRP	mm.c	66;"	d	file:
-LIFO	mm.c	29;"	d	file:
+GET	mm.c	63;"	d	file:
+GET_ALLOC	mm.c	68;"	d	file:
+GET_SIZE	mm.c	67;"	d	file:
+HDRP	mm.c	71;"	d	file:
+LIFO	mm.c	30;"	d	file:
 LITTLE_ENDIAN	/usr/include/endian.h	46;"	d
 L_INCR	/usr/include/unistd.h	320;"	d
 L_SET	/usr/include/unistd.h	319;"	d
 L_XTND	/usr/include/unistd.h	321;"	d
-MAX	mm.c	52;"	d	file:
+MAX	mm.c	57;"	d	file:
 MB_CUR_MAX	/usr/include/stdlib.h	139;"	d
-NEXT_BLKP	mm.c	70;"	d	file:
-NEXT_FBLKP	mm.c	75;"	d	file:
+NEXT_BLKP	mm.c	75;"	d	file:
+NEXT_FBLKP	mm.c	80;"	d	file:
 NFDBITS	/usr/include/sys/select.h	88;"	d
-PACK	mm.c	55;"	d	file:
+NSIG	/usr/include/signal.h	207;"	d
+NUM_INF	mm.c	33;"	d	file:
+NUM_LINEAR	mm.c	32;"	d	file:
+NUM_LIST	mm.c	34;"	d	file:
+PACK	mm.c	60;"	d	file:
 PDP_ENDIAN	/usr/include/endian.h	48;"	d
-PREV_BLKP	mm.c	71;"	d	file:
-PREV_FBLKP	mm.c	76;"	d	file:
-PUT	mm.c	59;"	d	file:
+PREV_BLKP	mm.c	76;"	d	file:
+PREV_FBLKP	mm.c	81;"	d	file:
+PUT	mm.c	64;"	d	file:
 P_tmpdir	/usr/include/stdio.h	148;"	d
 RAND_MAX	/usr/include/stdlib.h	129;"	d
 R_OK	/usr/include/unistd.h	282;"	d
@@ -68,6 +72,9 @@ SEEK_SET	/usr/include/unistd.h	312;"	d
 STDERR_FILENO	/usr/include/unistd.h	213;"	d
 STDIN_FILENO	/usr/include/unistd.h	211;"	d
 STDOUT_FILENO	/usr/include/unistd.h	212;"	d
+SV_INTERRUPT	/usr/include/signal.h	325;"	d
+SV_ONSTACK	/usr/include/signal.h	324;"	d
+SV_RESETHAND	/usr/include/signal.h	326;"	d
 TEMP_FAILURE_RETRY	/usr/include/unistd.h	1111;"	d
 TIMER_ABSTIME	/usr/include/bits/time.h	61;"	d
 WCHAR_MAX	/usr/include/wchar.h	115;"	d
@@ -79,7 +86,7 @@ WIFCONTINUED	/usr/include/stdlib.h	92;"	d
 WIFEXITED	/usr/include/stdlib.h	88;"	d
 WIFSIGNALED	/usr/include/stdlib.h	89;"	d
 WIFSTOPPED	/usr/include/stdlib.h	90;"	d
-WSIZE	mm.c	48;"	d	file:
+WSIZE	mm.c	53;"	d	file:
 WSTOPSIG	/usr/include/stdlib.h	87;"	d
 WTERMSIG	/usr/include/stdlib.h	86;"	d
 W_OK	/usr/include/unistd.h	283;"	d
@@ -89,12 +96,14 @@ _ATFILE_SOURCE	/usr/include/features.h	174;"	d
 _ATFILE_SOURCE	/usr/include/features.h	244;"	d
 _ATFILE_SOURCE	/usr/include/features.h	245;"	d
 _BITS_PTHREADTYPES_H	/usr/include/bits/pthreadtypes.h	21;"	d
+_BITS_SIGCONTEXT_H	/usr/include/bits/sigcontext.h	20;"	d
 _BITS_TIME_H	/usr/include/bits/time.h	26;"	d
 _BITS_TYPES_H	/usr/include/bits/types.h	25;"	d
 _BSD_SOURCE	/usr/include/features.h	169;"	d
 _BSD_SOURCE	/usr/include/features.h	170;"	d
 _BSD_SOURCE	/usr/include/features.h	182;"	d
 _ENDIAN_H	/usr/include/endian.h	20;"	d
+_EXTERN_INLINE	/usr/include/bits/sigset.h	47;"	d
 _FEATURES_H	/usr/include/features.h	20;"	d
 _GETOPT_H	/usr/include/getopt.h	24;"	d
 _IOFBF	/usr/include/stdio.h	121;"	d
@@ -136,6 +145,10 @@ _POSIX_SOURCE	/usr/include/features.h	159;"	d
 _POSIX_SOURCE	/usr/include/features.h	160;"	d
 _POSIX_SOURCE	/usr/include/features.h	205;"	d
 _POSIX_VERSION	/usr/include/unistd.h	35;"	d
+_SIGNAL_H	/usr/include/signal.h	26;"	d
+_SIGSET_H_fns	/usr/include/bits/sigset.h	44;"	d
+_SIGSET_H_types	/usr/include/bits/sigset.h	22;"	d
+_SIGSET_NWORDS	/usr/include/bits/sigset.h	28;"	d
 _STDIO_H	/usr/include/stdio.h	27;"	d
 _STDIO_USES_IOSTREAM	/usr/include/stdio.h	73;"	d
 _STDLIB_H	/usr/include/stdlib.h	38;"	d
@@ -262,6 +275,8 @@ __S16_TYPE	/usr/include/bits/types.h	99;"	d
 __S32_TYPE	/usr/include/bits/types.h	101;"	d
 __S64_TYPE	/usr/include/bits/types.h	112;"	d
 __S64_TYPE	/usr/include/bits/types.h	124;"	d
+__SIGSETFN	/usr/include/bits/sigset.h	109;"	d
+__SIGSETFN	/usr/include/bits/sigset.h	122;"	d
 __SIZEOF_PTHREAD_ATTR_T	/usr/include/bits/pthreadtypes.h	26;"	d
 __SIZEOF_PTHREAD_ATTR_T	/usr/include/bits/pthreadtypes.h	36;"	d
 __SIZEOF_PTHREAD_BARRIERATTR_T	/usr/include/bits/pthreadtypes.h	34;"	d
@@ -296,6 +311,15 @@ __SWORD_TYPE	/usr/include/bits/types.h	108;"	d
 __SWORD_TYPE	/usr/include/bits/types.h	120;"	d
 __THROW	/usr/include/getopt.h	43;"	d
 __THROW	/usr/include/getopt.h	45;"	d
+__THROW	/usr/include/signal.h	222;"	p
+__THROW	/usr/include/signal.h	225;"	p
+__THROW	/usr/include/signal.h	228;"	p
+__THROW	/usr/include/signal.h	231;"	p
+__THROW	/usr/include/signal.h	235;"	p
+__THROW	/usr/include/signal.h	239;"	p
+__THROW	/usr/include/signal.h	243;"	p
+__THROW	/usr/include/signal.h	247;"	p
+__THROW	/usr/include/signal.h	270;"	p
 __THROW	/usr/include/stdlib.h	337;"	p
 __THROW	/usr/include/stdlib.h	341;"	p
 __THROW	/usr/include/stdlib.h	361;"	p
@@ -443,17 +467,31 @@ __WORDSIZE_COMPAT32	/usr/include/bits/wordsize.h	5;"	d
 ____FILE_defined	/usr/include/stdio.h	67;"	d
 __a	/usr/include/stdlib.h	424;"	m	struct:drand48_data	access:public
 __align	/usr/include/bits/pthreadtypes.h	103;"	m	union:__anon36	access:public
+__align	/usr/include/bits/pthreadtypes.h	103;"	m	union:__anon58	access:public
 __align	/usr/include/bits/pthreadtypes.h	109;"	m	union:__anon38	access:public
+__align	/usr/include/bits/pthreadtypes.h	109;"	m	union:__anon60	access:public
 __align	/usr/include/bits/pthreadtypes.h	129;"	m	union:__anon39	access:public
+__align	/usr/include/bits/pthreadtypes.h	129;"	m	union:__anon61	access:public
 __align	/usr/include/bits/pthreadtypes.h	135;"	m	union:__anon41	access:public
+__align	/usr/include/bits/pthreadtypes.h	135;"	m	union:__anon63	access:public
 __align	/usr/include/bits/pthreadtypes.h	188;"	m	union:__anon42	access:public
+__align	/usr/include/bits/pthreadtypes.h	188;"	m	union:__anon64	access:public
 __align	/usr/include/bits/pthreadtypes.h	194;"	m	union:__anon44	access:public
+__align	/usr/include/bits/pthreadtypes.h	194;"	m	union:__anon66	access:public
 __align	/usr/include/bits/pthreadtypes.h	209;"	m	union:__anon45	access:public
+__align	/usr/include/bits/pthreadtypes.h	209;"	m	union:__anon67	access:public
 __align	/usr/include/bits/pthreadtypes.h	215;"	m	union:__anon46	access:public
+__align	/usr/include/bits/pthreadtypes.h	215;"	m	union:__anon68	access:public
 __align	/usr/include/bits/pthreadtypes.h	56;"	m	union:__anon35	access:public
+__align	/usr/include/bits/pthreadtypes.h	56;"	m	union:__anon57	access:public
 __always_inline	/usr/include/sys/cdefs.h	290;"	d
 __always_inline	/usr/include/sys/cdefs.h	292;"	d
 __attribute__	/usr/include/sys/cdefs.h	203;"	d
+__attribute_deprecated__	/usr/include/signal.h	173;"	v
+__attribute_deprecated__	/usr/include/signal.h	196;"	v
+__attribute_deprecated__	/usr/include/signal.h	199;"	v
+__attribute_deprecated__	/usr/include/signal.h	202;"	v
+__attribute_deprecated__	/usr/include/signal.h	366;"	v
 __attribute_deprecated__	/usr/include/sys/cdefs.h	237;"	d
 __attribute_deprecated__	/usr/include/sys/cdefs.h	239;"	d
 __attribute_format_arg__	/usr/include/sys/cdefs.h	249;"	d
@@ -491,6 +529,7 @@ __bos	/usr/include/sys/cdefs.h	132;"	d
 __bos0	/usr/include/sys/cdefs.h	133;"	d
 __bounded	/usr/include/sys/cdefs.h	125;"	d
 __broadcast_seq	/usr/include/bits/pthreadtypes.h	126;"	m	struct:__anon39::__anon40	access:public
+__broadcast_seq	/usr/include/bits/pthreadtypes.h	126;"	m	struct:__anon61::__anon62	access:public
 __c	/usr/include/stdlib.h	422;"	m	struct:drand48_data	access:public
 __caddr_t	/usr/include/bits/types.h	186;"	t
 __cleanup_fct_attribute	/usr/include/bits/pthreadtypes.h	222;"	d
@@ -503,18 +542,25 @@ __compar_d_fn_t	/usr/include/stdlib.h	749;"	t
 __compar_fn_t	/usr/include/stdlib.h	742;"	t
 __const	/usr/include/sys/cdefs.h	66;"	d
 __count	/usr/include/bits/pthreadtypes.h	81;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__count	/usr/include/bits/pthreadtypes.h	81;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __count	/usr/include/wchar.h	85;"	m	struct:__anon5	access:public
 __count	/usr/include/wchar.h	85;"	m	struct:__anon8	access:public
+__csh	/usr/include/bits/sigcontext.h	98;"	m	struct:sigcontext	access:public
 __ctype_b	/usr/include/xlocale.h	34;"	m	struct:__locale_struct	access:public
 __ctype_tolower	/usr/include/xlocale.h	35;"	m	struct:__locale_struct	access:public
 __ctype_toupper	/usr/include/xlocale.h	36;"	m	struct:__locale_struct	access:public
 __daddr_t	/usr/include/bits/types.h	153;"	v
 __data	/usr/include/bits/pthreadtypes.h	101;"	m	union:__anon36	typeref:struct:__anon36::__pthread_mutex_s	access:public
+__data	/usr/include/bits/pthreadtypes.h	101;"	m	union:__anon58	typeref:struct:__anon58::__pthread_mutex_s	access:public
 __data	/usr/include/bits/pthreadtypes.h	127;"	m	union:__anon39	typeref:struct:__anon39::__anon40	access:public
+__data	/usr/include/bits/pthreadtypes.h	127;"	m	union:__anon61	typeref:struct:__anon61::__anon62	access:public
 __data	/usr/include/bits/pthreadtypes.h	168;"	m	union:__anon42	typeref:struct:__anon42::__anon43	access:public
+__data	/usr/include/bits/pthreadtypes.h	168;"	m	union:__anon64	typeref:struct:__anon64::__anon65	access:public
 __dev_t	/usr/include/bits/types.h	134;"	v
+__dsh	/usr/include/bits/sigcontext.h	86;"	m	struct:sigcontext	access:public
 __errordecl	/usr/include/sys/cdefs.h	142;"	d
 __errordecl	/usr/include/sys/cdefs.h	147;"	d
+__esh	/usr/include/bits/sigcontext.h	85;"	m	struct:sigcontext	access:public
 __extension__	/usr/include/sys/cdefs.h	339;"	d
 __extern_always_inline	/usr/include/sys/cdefs.h	307;"	d
 __extern_always_inline	/usr/include/sys/cdefs.h	310;"	d
@@ -524,6 +570,7 @@ __extern_inline	/usr/include/sys/cdefs.h	302;"	d
 __extern_inline	/usr/include/sys/cdefs.h	314;"	d
 __fd_mask	/usr/include/sys/select.h	55;"	t
 __flags	/usr/include/bits/pthreadtypes.h	167;"	m	struct:__anon42::__anon43	access:public
+__flags	/usr/include/bits/pthreadtypes.h	167;"	m	struct:__anon64::__anon65	access:public
 __flexarr	/usr/include/sys/cdefs.h	153;"	d
 __flexarr	/usr/include/sys/cdefs.h	156;"	d
 __flexarr	/usr/include/sys/cdefs.h	159;"	d
@@ -532,10 +579,13 @@ __fsblkcnt64_t	/usr/include/bits/types.h	174;"	v
 __fsblkcnt_t	/usr/include/bits/types.h	173;"	v
 __fsfilcnt64_t	/usr/include/bits/types.h	178;"	v
 __fsfilcnt_t	/usr/include/bits/types.h	177;"	v
+__fsh	/usr/include/bits/sigcontext.h	84;"	m	struct:sigcontext	access:public
 __fsid_t	/usr/include/bits/types.h	144;"	v
 __futex	/usr/include/bits/pthreadtypes.h	120;"	m	struct:__anon39::__anon40	access:public
+__futex	/usr/include/bits/pthreadtypes.h	120;"	m	struct:__anon61::__anon62	access:public
 __gid_t	/usr/include/bits/types.h	136;"	v
 __gid_t_defined	/usr/include/unistd.h	234;"	d
+__gsh	/usr/include/bits/sigcontext.h	83;"	m	struct:sigcontext	access:public
 __id_t	/usr/include/bits/types.h	148;"	v
 __init	/usr/include/stdlib.h	423;"	m	struct:drand48_data	access:public
 __inline	/usr/include/sys/cdefs.h	61;"	d
@@ -556,16 +606,22 @@ __isoc99_wscanf	/usr/include/wchar.h	668;"	p
 __iswxxx_defined	/usr/include/wctype.h	48;"	d
 __key_t	/usr/include/bits/types.h	155;"	v
 __kind	/usr/include/bits/pthreadtypes.h	88;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__kind	/usr/include/bits/pthreadtypes.h	88;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __ldiv_t_defined	/usr/include/stdlib.h	111;"	d
 __list	/usr/include/bits/pthreadtypes.h	91;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__list	/usr/include/bits/pthreadtypes.h	91;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __list	/usr/include/bits/pthreadtypes.h	98;"	m	union:__anon36::__pthread_mutex_s::__anon37	access:public
+__list	/usr/include/bits/pthreadtypes.h	98;"	m	union:__anon58::__pthread_mutex_s::__anon59	access:public
 __lldiv_t_defined	/usr/include/stdlib.h	123;"	d
 __locale_struct	/usr/include/xlocale.h	28;"	s
 __locale_t	/usr/include/xlocale.h	40;"	t	typeref:struct:__locale_struct
 __locales	/usr/include/xlocale.h	31;"	m	struct:__locale_struct	typeref:struct:__locale_struct::__locale_data	access:public
 __lock	/usr/include/bits/pthreadtypes.h	119;"	m	struct:__anon39::__anon40	access:public
+__lock	/usr/include/bits/pthreadtypes.h	119;"	m	struct:__anon61::__anon62	access:public
 __lock	/usr/include/bits/pthreadtypes.h	155;"	m	struct:__anon42::__anon43	access:public
+__lock	/usr/include/bits/pthreadtypes.h	155;"	m	struct:__anon64::__anon65	access:public
 __lock	/usr/include/bits/pthreadtypes.h	80;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__lock	/usr/include/bits/pthreadtypes.h	80;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __loff_t	/usr/include/bits/types.h	184;"	t
 __long_double_t	/usr/include/sys/cdefs.h	85;"	d
 __malloc_and_calloc_defined	/usr/include/stdlib.h	468;"	d
@@ -574,6 +630,7 @@ __mbstate_t	/usr/include/wchar.h	95;"	t	typeref:struct:__anon8
 __mbstate_t_defined	/usr/include/wchar.h	81;"	d
 __mode_t	/usr/include/bits/types.h	139;"	v
 __mutex	/usr/include/bits/pthreadtypes.h	124;"	m	struct:__anon39::__anon40	access:public
+__mutex	/usr/include/bits/pthreadtypes.h	124;"	m	struct:__anon61::__anon62	access:public
 __names	/usr/include/xlocale.h	39;"	m	struct:__locale_struct	access:public
 __need_FILE	/usr/include/stdio.h	37;"	d
 __need_FILE	/usr/include/stdio.h	59;"	d
@@ -596,6 +653,9 @@ __need_iswxxx	/usr/include/wctype.h	42;"	d
 __need_malloc_and_calloc	/usr/include/stdlib.h	962;"	d
 __need_mbstate_t	/usr/include/wchar.h	897;"	d
 __need_mbstate_t	/usr/include/wchar.h	97;"	d
+__need_sig_atomic_t	/usr/include/signal.h	44;"	d
+__need_sigset_t	/usr/include/signal.h	52;"	d
+__need_size_t	/usr/include/signal.h	348;"	d
 __need_size_t	/usr/include/stdio.h	32;"	d
 __need_size_t	/usr/include/stdlib.h	28;"	d
 __need_size_t	/usr/include/time.h	36;"	d
@@ -604,6 +664,7 @@ __need_size_t	/usr/include/wchar.h	45;"	d
 __need_time_t	/usr/include/sys/select.h	42;"	d
 __need_time_t	/usr/include/time.h	83;"	d
 __need_timer_t	/usr/include/time.h	107;"	d
+__need_timespec	/usr/include/signal.h	75;"	d
 __need_timespec	/usr/include/sys/select.h	43;"	d
 __need_timespec	/usr/include/time.h	127;"	d
 __need_timeval	/usr/include/bits/time.h	68;"	d
@@ -620,11 +681,17 @@ __nlink_t	/usr/include/bits/types.h	140;"	v
 __nonnull	/usr/include/sys/cdefs.h	268;"	d
 __nonnull	/usr/include/sys/cdefs.h	270;"	d
 __nr_readers	/usr/include/bits/pthreadtypes.h	156;"	m	struct:__anon42::__anon43	access:public
+__nr_readers	/usr/include/bits/pthreadtypes.h	156;"	m	struct:__anon64::__anon65	access:public
 __nr_readers_queued	/usr/include/bits/pthreadtypes.h	159;"	m	struct:__anon42::__anon43	access:public
+__nr_readers_queued	/usr/include/bits/pthreadtypes.h	159;"	m	struct:__anon64::__anon65	access:public
 __nr_writers_queued	/usr/include/bits/pthreadtypes.h	160;"	m	struct:__anon42::__anon43	access:public
+__nr_writers_queued	/usr/include/bits/pthreadtypes.h	160;"	m	struct:__anon64::__anon65	access:public
 __nusers	/usr/include/bits/pthreadtypes.h	84;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__nusers	/usr/include/bits/pthreadtypes.h	84;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __nusers	/usr/include/bits/pthreadtypes.h	94;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__nusers	/usr/include/bits/pthreadtypes.h	94;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __nwaiters	/usr/include/bits/pthreadtypes.h	125;"	m	struct:__anon39::__anon40	access:public
+__nwaiters	/usr/include/bits/pthreadtypes.h	125;"	m	struct:__anon61::__anon62	access:public
 __off64_t	/usr/include/bits/types.h	142;"	v
 __off64_t_defined	/usr/include/stdio.h	99;"	d
 __off64_t_defined	/usr/include/unistd.h	252;"	d
@@ -633,9 +700,14 @@ __off_t_defined	/usr/include/stdio.h	95;"	d
 __off_t_defined	/usr/include/unistd.h	248;"	d
 __old_x	/usr/include/stdlib.h	421;"	m	struct:drand48_data	access:public
 __owner	/usr/include/bits/pthreadtypes.h	82;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__owner	/usr/include/bits/pthreadtypes.h	82;"	m	struct:__anon58::__pthread_mutex_s	access:public
+__pad0	/usr/include/bits/sigcontext.h	148;"	m	struct:sigcontext	access:public
 __pad1	/usr/include/bits/pthreadtypes.h	163;"	m	struct:__anon42::__anon43	access:public
+__pad1	/usr/include/bits/pthreadtypes.h	163;"	m	struct:__anon64::__anon65	access:public
 __pad2	/usr/include/bits/pthreadtypes.h	164;"	m	struct:__anon42::__anon43	access:public
+__pad2	/usr/include/bits/pthreadtypes.h	164;"	m	struct:__anon64::__anon65	access:public
 __pid_t	/usr/include/bits/types.h	143;"	v
+__pid_t_defined	/usr/include/signal.h	63;"	d
 __pid_t_defined	/usr/include/time.h	175;"	d
 __pid_t_defined	/usr/include/unistd.h	262;"	d
 __prev	/usr/include/bits/pthreadtypes.h	63;"	m	struct:__pthread_internal_list	typeref:struct:__pthread_internal_list::__pthread_internal_list	access:public
@@ -643,6 +715,7 @@ __pthread_internal_list	/usr/include/bits/pthreadtypes.h	61;"	s
 __pthread_internal_slist	/usr/include/bits/pthreadtypes.h	67;"	s
 __pthread_list_t	/usr/include/bits/pthreadtypes.h	65;"	t	typeref:struct:__pthread_internal_list
 __pthread_mutex_s	/usr/include/bits/pthreadtypes.h	78;"	s	union:__anon36	access:public
+__pthread_mutex_s	/usr/include/bits/pthreadtypes.h	78;"	s	union:__anon58	access:public
 __pthread_slist_t	/usr/include/bits/pthreadtypes.h	70;"	t	typeref:struct:__pthread_internal_slist
 __ptr_t	/usr/include/sys/cdefs.h	84;"	d
 __ptrvalue	/usr/include/sys/cdefs.h	127;"	d
@@ -665,7 +738,10 @@ __quad_t	/usr/include/bits/types.h	62;"	t	typeref:struct:__anon30
 __quad_t	/usr/include/bits/types.h	62;"	t	typeref:struct:__anon32
 __quad_t	/usr/include/bits/types.h	62;"	t	typeref:struct:__anon47
 __quad_t	/usr/include/bits/types.h	62;"	t	typeref:struct:__anon52
+__quad_t	/usr/include/bits/types.h	62;"	t	typeref:struct:__anon55
 __readers_wakeup	/usr/include/bits/pthreadtypes.h	157;"	m	struct:__anon42::__anon43	access:public
+__readers_wakeup	/usr/include/bits/pthreadtypes.h	157;"	m	struct:__anon64::__anon65	access:public
+__reserved1	/usr/include/bits/sigcontext.h	154;"	m	struct:sigcontext	access:public
 __restrict	/usr/include/sys/cdefs.h	344;"	d
 __restrict_arr	/usr/include/sys/cdefs.h	351;"	d
 __restrict_arr	/usr/include/sys/cdefs.h	354;"	d
@@ -674,21 +750,50 @@ __restrict_arr	/usr/include/sys/cdefs.h	360;"	d
 __rlim64_t	/usr/include/bits/types.h	147;"	v
 __rlim_t	/usr/include/bits/types.h	146;"	v
 __shared	/usr/include/bits/pthreadtypes.h	162;"	m	struct:__anon42::__anon43	access:public
+__shared	/usr/include/bits/pthreadtypes.h	162;"	m	struct:__anon64::__anon65	access:public
+__sig_atomic_t	/usr/include/bits/sigset.h	24;"	t
+__sig_atomic_t_defined	/usr/include/signal.h	39;"	d
+__sigaddset	/usr/include/bits/sigset.h	105;"	p
+__sigandset	/usr/include/bits/sigset.h	80;"	d
+__sigdelset	/usr/include/bits/sigset.h	106;"	p
+__sigemptyset	/usr/include/bits/sigset.h	58;"	d
+__sigfillset	/usr/include/bits/sigset.h	63;"	d
+__sighandler_t	/usr/include/signal.h	84;"	t
+__sigisemptyset	/usr/include/bits/sigset.h	73;"	d
+__sigismember	/usr/include/bits/sigset.h	104;"	p
+__sigmask	/usr/include/bits/sigset.h	51;"	d
 __signed	/usr/include/sys/cdefs.h	67;"	d
+__sigorset	/usr/include/bits/sigset.h	89;"	d
+__sigpause	/usr/include/signal.h	168;"	p
+__sigset_t	/usr/include/bits/sigset.h	32;"	t	typeref:struct:__anon54
+__sigset_t_defined	/usr/include/signal.h	49;"	d
 __sigset_t_defined	/usr/include/sys/select.h	37;"	d
+__sigword	/usr/include/bits/sigset.h	55;"	d
 __size	/usr/include/bits/pthreadtypes.h	102;"	m	union:__anon36	access:public
+__size	/usr/include/bits/pthreadtypes.h	102;"	m	union:__anon58	access:public
 __size	/usr/include/bits/pthreadtypes.h	108;"	m	union:__anon38	access:public
+__size	/usr/include/bits/pthreadtypes.h	108;"	m	union:__anon60	access:public
 __size	/usr/include/bits/pthreadtypes.h	128;"	m	union:__anon39	access:public
+__size	/usr/include/bits/pthreadtypes.h	128;"	m	union:__anon61	access:public
 __size	/usr/include/bits/pthreadtypes.h	134;"	m	union:__anon41	access:public
+__size	/usr/include/bits/pthreadtypes.h	134;"	m	union:__anon63	access:public
 __size	/usr/include/bits/pthreadtypes.h	187;"	m	union:__anon42	access:public
+__size	/usr/include/bits/pthreadtypes.h	187;"	m	union:__anon64	access:public
 __size	/usr/include/bits/pthreadtypes.h	193;"	m	union:__anon44	access:public
+__size	/usr/include/bits/pthreadtypes.h	193;"	m	union:__anon66	access:public
 __size	/usr/include/bits/pthreadtypes.h	208;"	m	union:__anon45	access:public
+__size	/usr/include/bits/pthreadtypes.h	208;"	m	union:__anon67	access:public
 __size	/usr/include/bits/pthreadtypes.h	214;"	m	union:__anon46	access:public
+__size	/usr/include/bits/pthreadtypes.h	214;"	m	union:__anon68	access:public
 __size	/usr/include/bits/pthreadtypes.h	55;"	m	union:__anon35	access:public
+__size	/usr/include/bits/pthreadtypes.h	55;"	m	union:__anon57	access:public
 __socklen_t	/usr/include/bits/types.h	192;"	v
 __socklen_t_defined	/usr/include/unistd.h	276;"	d
 __spins	/usr/include/bits/pthreadtypes.h	90;"	m	struct:__anon36::__pthread_mutex_s	access:public
+__spins	/usr/include/bits/pthreadtypes.h	90;"	m	struct:__anon58::__pthread_mutex_s	access:public
 __spins	/usr/include/bits/pthreadtypes.h	97;"	m	union:__anon36::__pthread_mutex_s::__anon37	access:public
+__spins	/usr/include/bits/pthreadtypes.h	97;"	m	union:__anon58::__pthread_mutex_s::__anon59	access:public
+__ssh	/usr/include/bits/sigcontext.h	101;"	m	struct:sigcontext	access:public
 __ssize_t	/usr/include/bits/types.h	180;"	v
 __ssize_t_defined	/usr/include/stdio.h	104;"	d
 __ssize_t_defined	/usr/include/unistd.h	222;"	d
@@ -704,6 +809,7 @@ __timespec_defined	/usr/include/time.h	114;"	d
 __tm_gmtoff	/usr/include/time.h	149;"	m	struct:tm	access:public
 __tm_zone	/usr/include/time.h	150;"	m	struct:tm	access:public
 __total_seq	/usr/include/bits/pthreadtypes.h	121;"	m	struct:__anon39::__anon40	access:public
+__total_seq	/usr/include/bits/pthreadtypes.h	121;"	m	struct:__anon61::__anon62	access:public
 __u_char	/usr/include/bits/types.h	31;"	t
 __u_int	/usr/include/bits/types.h	33;"	t
 __u_long	/usr/include/bits/types.h	34;"	t
@@ -725,8 +831,10 @@ __u_quad_t	/usr/include/bits/types.h	66;"	t	typeref:struct:__anon33
 __u_quad_t	/usr/include/bits/types.h	66;"	t	typeref:struct:__anon4
 __u_quad_t	/usr/include/bits/types.h	66;"	t	typeref:struct:__anon48
 __u_quad_t	/usr/include/bits/types.h	66;"	t	typeref:struct:__anon53
+__u_quad_t	/usr/include/bits/types.h	66;"	t	typeref:struct:__anon56
 __u_short	/usr/include/bits/types.h	32;"	t
 __uid_t	/usr/include/bits/types.h	135;"	v
+__uid_t_defined	/usr/include/signal.h	69;"	d
 __uid_t_defined	/usr/include/unistd.h	239;"	d
 __uint16_t	/usr/include/bits/types.h	40;"	t
 __uint32_t	/usr/include/bits/types.h	42;"	t
@@ -738,6 +846,7 @@ __useconds_t	/usr/include/bits/types.h	150;"	v
 __useconds_t_defined	/usr/include/unistd.h	257;"	d
 __va_arg_pack	/usr/include/sys/cdefs.h	330;"	d
 __va_arg_pack_len	/usr/include/sys/cdefs.h	331;"	d
+__val	/usr/include/bits/sigset.h	31;"	m	struct:__anon54	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon1	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon10	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon12	access:public
@@ -754,6 +863,7 @@ __val	/usr/include/bits/types.h	61;"	m	struct:__anon30	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon32	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon47	access:public
 __val	/usr/include/bits/types.h	61;"	m	struct:__anon52	access:public
+__val	/usr/include/bits/types.h	61;"	m	struct:__anon55	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon11	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon13	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon15	access:public
@@ -770,10 +880,12 @@ __val	/usr/include/bits/types.h	65;"	m	struct:__anon33	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon4	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon48	access:public
 __val	/usr/include/bits/types.h	65;"	m	struct:__anon53	access:public
+__val	/usr/include/bits/types.h	65;"	m	struct:__anon56	access:public
 __value	/usr/include/wchar.h	94;"	m	struct:__anon5	typeref:union:__anon5::__anon6	access:public
 __value	/usr/include/wchar.h	94;"	m	struct:__anon8	typeref:union:__anon8::__anon9	access:public
 __volatile	/usr/include/sys/cdefs.h	68;"	d
 __wakeup_seq	/usr/include/bits/pthreadtypes.h	122;"	m	struct:__anon39::__anon40	access:public
+__wakeup_seq	/usr/include/bits/pthreadtypes.h	122;"	m	struct:__anon61::__anon62	access:public
 __warnattr	/usr/include/sys/cdefs.h	141;"	d
 __warnattr	/usr/include/sys/cdefs.h	146;"	d
 __warndecl	/usr/include/sys/cdefs.h	139;"	d
@@ -783,8 +895,11 @@ __wch	/usr/include/wchar.h	89;"	m	union:__anon8::__anon9	access:public
 __wchb	/usr/include/wchar.h	93;"	m	union:__anon5::__anon6	access:public
 __wchb	/usr/include/wchar.h	93;"	m	union:__anon8::__anon9	access:public
 __woken_seq	/usr/include/bits/pthreadtypes.h	123;"	m	struct:__anon39::__anon40	access:public
+__woken_seq	/usr/include/bits/pthreadtypes.h	123;"	m	struct:__anon61::__anon62	access:public
 __writer	/usr/include/bits/pthreadtypes.h	161;"	m	struct:__anon42::__anon43	access:public
+__writer	/usr/include/bits/pthreadtypes.h	161;"	m	struct:__anon64::__anon65	access:public
 __writer_wakeup	/usr/include/bits/pthreadtypes.h	158;"	m	struct:__anon42::__anon43	access:public
+__writer_wakeup	/usr/include/bits/pthreadtypes.h	158;"	m	struct:__anon64::__anon65	access:public
 __wur	/usr/include/stdio.h	208;"	v
 __wur	/usr/include/stdio.h	214;"	v
 __wur	/usr/include/stdio.h	227;"	v
@@ -836,7 +951,18 @@ __wur	/usr/include/unistd.h	910;"	v
 __wur	/usr/include/unistd.h	956;"	v
 __x	/usr/include/stdlib.h	420;"	m	struct:drand48_data	access:public
 _exit	/usr/include/unistd.h	600;"	p
-aligned	mm.c	260;"	f	file:
+_fpreg	/usr/include/bits/sigcontext.h	28;"	s
+_fpstate	/usr/include/bits/sigcontext.h	109;"	s
+_fpstate	/usr/include/bits/sigcontext.h	50;"	s
+_fpxreg	/usr/include/bits/sigcontext.h	34;"	s
+_fxsr_env	/usr/include/bits/sigcontext.h	65;"	m	struct:_fpstate	access:public
+_fxsr_st	/usr/include/bits/sigcontext.h	68;"	m	struct:_fpstate	typeref:struct:_fpstate::_fpxreg	access:public
+_st	/usr/include/bits/sigcontext.h	120;"	m	struct:_fpstate	typeref:struct:_fpstate::_fpxreg	access:public
+_st	/usr/include/bits/sigcontext.h	60;"	m	struct:_fpstate	typeref:struct:_fpstate::_fpreg	access:public
+_xmm	/usr/include/bits/sigcontext.h	121;"	m	struct:_fpstate	typeref:struct:_fpstate::_xmmreg	access:public
+_xmm	/usr/include/bits/sigcontext.h	69;"	m	struct:_fpstate	typeref:struct:_fpstate::_xmmreg	access:public
+_xmmreg	/usr/include/bits/sigcontext.h	41;"	s
+aligned	mm.c	310;"	f	file:
 atof	/usr/include/stdlib.h	279;"	f
 atoi	/usr/include/stdlib.h	284;"	f
 atol	/usr/include/stdlib.h	289;"	f
@@ -848,27 +974,58 @@ be32toh	/usr/include/endian.h	86;"	d
 be64toh	/usr/include/endian.h	76;"	d
 be64toh	/usr/include/endian.h	91;"	d
 btowc	/usr/include/wchar.h	386;"	f
-calloc	mm.c	237;"	f
-calloc	mm.c	37;"	d	file:
-checkblock	mm.c	106;"	p	file:
-checkblock	mm.c	521;"	f	file:
+calloc	mm.c	287;"	f
+calloc	mm.c	42;"	d	file:
+checkblock	mm.c	127;"	p	file:
+checkblock	mm.c	646;"	f	file:
+checkfreelist	mm.c	128;"	p	file:
+checkfreelist	mm.c	654;"	f	file:
 clock_nanosleep	/usr/include/time.h	347;"	p
 clock_t	/usr/include/time.h	60;"	t
 clockid_t	/usr/include/time.h	92;"	t
 close	/usr/include/unistd.h	350;"	p
-coalesce	mm.c	102;"	p	file:
-coalesce	mm.c	330;"	f	file:
+coalesce	mm.c	121;"	p	file:
+coalesce	mm.c	392;"	f	file:
 comparison_fn_t	/usr/include/stdlib.h	745;"	t
+cr2	/usr/include/bits/sigcontext.h	104;"	m	struct:sigcontext	access:public
+cr2	/usr/include/bits/sigcontext.h	152;"	m	struct:sigcontext	access:public
+cs	/usr/include/bits/sigcontext.h	145;"	m	struct:sigcontext	access:public
+cs	/usr/include/bits/sigcontext.h	98;"	m	struct:sigcontext	access:public
+cssel	/usr/include/bits/sigcontext.h	57;"	m	struct:_fpstate	access:public
 cuserid	/usr/include/stdio.h	886;"	p
-dbg_printf	mm.c	22;"	d	file:
-dbg_printf	mm.c	24;"	d	file:
+cw	/usr/include/bits/sigcontext.h	53;"	m	struct:_fpstate	access:public
+cwd	/usr/include/bits/sigcontext.h	112;"	m	struct:_fpstate	access:public
+dataoff	/usr/include/bits/sigcontext.h	58;"	m	struct:_fpstate	access:public
+datasel	/usr/include/bits/sigcontext.h	59;"	m	struct:_fpstate	access:public
+dbg_printf	mm.c	23;"	d	file:
+dbg_printf	mm.c	25;"	d	file:
 div_t	/usr/include/stdlib.h	102;"	t	typeref:struct:__anon49
+divide_chunk	mm.c	131;"	p	file:
+divide_chunk	mm.c	373;"	f	file:
 dprintf	/usr/include/stdio.h	419;"	p
 drand48_data	/usr/include/stdlib.h	418;"	s
+ds	/usr/include/bits/sigcontext.h	86;"	m	struct:sigcontext	access:public
+eax	/usr/include/bits/sigcontext.h	94;"	m	struct:sigcontext	access:public
+ebp	/usr/include/bits/sigcontext.h	89;"	m	struct:sigcontext	access:public
+ebx	/usr/include/bits/sigcontext.h	91;"	m	struct:sigcontext	access:public
+ecx	/usr/include/bits/sigcontext.h	93;"	m	struct:sigcontext	access:public
+edi	/usr/include/bits/sigcontext.h	87;"	m	struct:sigcontext	access:public
+edx	/usr/include/bits/sigcontext.h	92;"	m	struct:sigcontext	access:public
+eflags	/usr/include/bits/sigcontext.h	144;"	m	struct:sigcontext	access:public
+eflags	/usr/include/bits/sigcontext.h	99;"	m	struct:sigcontext	access:public
+eip	/usr/include/bits/sigcontext.h	97;"	m	struct:sigcontext	access:public
+element	/usr/include/bits/sigcontext.h	43;"	m	struct:_xmmreg	access:public
 end_ptr	/usr/include/stdlib.h	357;"	m	struct:random_data	access:public
-extend_heap	mm.c	101;"	p	file:
-extend_heap	mm.c	295;"	f	file:
-fb_listp	mm.c	95;"	v	file:
+err	/usr/include/bits/sigcontext.h	149;"	m	struct:sigcontext	access:public
+err	/usr/include/bits/sigcontext.h	96;"	m	struct:sigcontext	access:public
+es	/usr/include/bits/sigcontext.h	85;"	m	struct:sigcontext	access:public
+esi	/usr/include/bits/sigcontext.h	88;"	m	struct:sigcontext	access:public
+esp	/usr/include/bits/sigcontext.h	90;"	m	struct:sigcontext	access:public
+esp_at_signal	/usr/include/bits/sigcontext.h	100;"	m	struct:sigcontext	access:public
+exponent	/usr/include/bits/sigcontext.h	31;"	m	struct:_fpreg	access:public
+exponent	/usr/include/bits/sigcontext.h	37;"	m	struct:_fpxreg	access:public
+extend_heap	mm.c	120;"	p	file:
+extend_heap	mm.c	350;"	f	file:
 fclose	/usr/include/stdio.h	236;"	p
 fcloseall	/usr/include/stdio.h	261;"	p
 fd_mask	/usr/include/sys/select.h	85;"	t
@@ -885,12 +1042,20 @@ fgetwc	/usr/include/wchar.h	743;"	p
 fgetwc_unlocked	/usr/include/wchar.h	808;"	p
 fgetws	/usr/include/wchar.h	772;"	p
 fgetws_unlocked	/usr/include/wchar.h	835;"	p
-find_fit	mm.c	104;"	p	file:
-find_fit	mm.c	466;"	f	file:
+find_fit	mm.c	123;"	p	file:
+find_fit	mm.c	559;"	f	file:
+find_list	mm.c	124;"	p	file:
+find_list	mm.c	605;"	f	file:
+find_list_fit	mm.c	125;"	p	file:
+find_list_fit	mm.c	588;"	f	file:
+fl_timeout	mm.c	134;"	f
 flag	/usr/include/getopt.h	112;"	m	struct:option	access:public
+fop	/usr/include/bits/sigcontext.h	115;"	m	struct:_fpstate	access:public
 fpos64_t	/usr/include/stdio.h	117;"	t
 fpos_t	/usr/include/stdio.h	111;"	t
 fprintf	/usr/include/stdio.h	355;"	p
+fpstate	/usr/include/bits/sigcontext.h	102;"	m	struct:sigcontext	typeref:struct:sigcontext::_fpstate	access:public
+fpstate	/usr/include/bits/sigcontext.h	153;"	m	struct:sigcontext	typeref:struct:sigcontext::_fpstate	access:public
 fptr	/usr/include/stdlib.h	351;"	m	struct:random_data	access:public
 fputc	/usr/include/stdio.h	577;"	p
 fputc_unlocked	/usr/include/stdio.h	598;"	p
@@ -900,8 +1065,10 @@ fputwc	/usr/include/wchar.h	757;"	p
 fputwc_unlocked	/usr/include/wchar.h	816;"	p
 fputws	/usr/include/wchar.h	779;"	p
 fputws_unlocked	/usr/include/wchar.h	844;"	p
-free	mm.c	175;"	f
-free	mm.c	35;"	d	file:
+free	mm.c	224;"	f
+free	mm.c	40;"	d	file:
+fs	/usr/include/bits/sigcontext.h	147;"	m	struct:sigcontext	access:public
+fs	/usr/include/bits/sigcontext.h	84;"	m	struct:sigcontext	access:public
 fscanf	/usr/include/stdio.h	461;"	d
 fseek	/usr/include/stdio.h	744;"	p
 fseeko	/usr/include/stdio.h	768;"	p
@@ -910,10 +1077,11 @@ fsetpos	/usr/include/stdio.h	798;"	p
 fsetpos64	/usr/include/stdio.h	816;"	p
 fsync	/usr/include/unistd.h	976;"	p
 ftruncate	/usr/include/unistd.h	1032;"	d
+ftw	/usr/include/bits/sigcontext.h	114;"	m	struct:_fpstate	access:public
 fwprintf	/usr/include/wchar.h	592;"	p
 fwscanf	/usr/include/wchar.h	633;"	p
 fwscanf	/usr/include/wchar.h	672;"	d
-get_addr	mm.c	86;"	f	file:
+get_addr	mm.c	103;"	f	file:
 getc	/usr/include/stdio.h	536;"	p
 getc	/usr/include/stdio.h	547;"	d
 getc_unlocked	/usr/include/stdio.h	554;"	p
@@ -933,8 +1101,10 @@ getwc_unlocked	/usr/include/wchar.h	799;"	p
 getwchar	/usr/include/wchar.h	750;"	p
 getwchar_unlocked	/usr/include/wchar.h	800;"	p
 gid_t	/usr/include/unistd.h	233;"	t
+gs	/usr/include/bits/sigcontext.h	146;"	m	struct:sigcontext	access:public
+gs	/usr/include/bits/sigcontext.h	83;"	m	struct:sigcontext	access:public
 has_arg	/usr/include/getopt.h	111;"	m	struct:option	access:public
-heap_listp	mm.c	94;"	v	file:
+heap_listp	mm.c	111;"	v	file:
 htobe16	/usr/include/endian.h	64;"	d
 htobe16	/usr/include/endian.h	79;"	d
 htobe32	/usr/include/endian.h	69;"	d
@@ -947,8 +1117,14 @@ htole32	/usr/include/endian.h	70;"	d
 htole32	/usr/include/endian.h	85;"	d
 htole64	/usr/include/endian.h	75;"	d
 htole64	/usr/include/endian.h	90;"	d
-in_heap	mm.c	252;"	f	file:
+in_heap	mm.c	302;"	f	file:
+init_seglist	mm.c	129;"	p	file:
+init_seglist	mm.c	170;"	f	file:
+insert	mm.c	130;"	p	file:
+insert	mm.c	540;"	f	file:
 intptr_t	/usr/include/unistd.h	268;"	t
+ipoff	/usr/include/bits/sigcontext.h	56;"	m	struct:_fpstate	access:public
+is_addr	mm.c	86;"	f	file:
 it_interval	/usr/include/time.h	163;"	m	struct:itimerspec	typeref:struct:itimerspec::timespec	access:public
 it_value	/usr/include/time.h	164;"	m	struct:itimerspec	typeref:struct:itimerspec::timespec	access:public
 itimerspec	/usr/include/time.h	161;"	s
@@ -963,16 +1139,20 @@ lldiv_t	/usr/include/stdlib.h	122;"	t	typeref:struct:__anon51
 locale_t	/usr/include/xlocale.h	43;"	t
 lockf	/usr/include/unistd.h	1097;"	d
 lseek	/usr/include/unistd.h	338;"	d
-malloc	mm.c	139;"	f
-malloc	mm.c	34;"	d	file:
+magic	/usr/include/bits/sigcontext.h	62;"	m	struct:_fpstate	access:public
+malloc	mm.c	186;"	f
+malloc	mm.c	39;"	d	file:
 mbrlen	/usr/include/wchar.h	397;"	f
 mbstate_t	/usr/include/wchar.h	106;"	t
 mkostemp	/usr/include/stdlib.h	680;"	d
 mkostemps	/usr/include/stdlib.h	702;"	d
 mkstemp	/usr/include/stdlib.h	626;"	d
 mkstemps	/usr/include/stdlib.h	648;"	d
-mm_checkheap	mm.c	267;"	f
-mm_init	mm.c	111;"	f
+mm_checkheap	mm.c	317;"	f
+mm_init	mm.c	143;"	f
+mxcr_mask	/usr/include/bits/sigcontext.h	119;"	m	struct:_fpstate	access:public
+mxcsr	/usr/include/bits/sigcontext.h	118;"	m	struct:_fpstate	access:public
+mxcsr	/usr/include/bits/sigcontext.h	66;"	m	struct:_fpstate	access:public
 name	/usr/include/getopt.h	108;"	m	struct:option	access:public
 nanosleep	/usr/include/time.h	328;"	p
 no_argument	/usr/include/getopt.h	118;"	d
@@ -982,34 +1162,51 @@ off_t	/usr/include/stdio.h	91;"	t
 off_t	/usr/include/stdio.h	93;"	t
 off_t	/usr/include/unistd.h	244;"	t
 off_t	/usr/include/unistd.h	246;"	t
+oldmask	/usr/include/bits/sigcontext.h	103;"	m	struct:sigcontext	access:public
+oldmask	/usr/include/bits/sigcontext.h	151;"	m	struct:sigcontext	access:public
 option	/usr/include/getopt.h	106;"	s
 optional_argument	/usr/include/getopt.h	120;"	d
+padding	/usr/include/bits/sigcontext.h	122;"	m	struct:_fpstate	access:public
+padding	/usr/include/bits/sigcontext.h	38;"	m	struct:_fpxreg	access:public
+padding	/usr/include/bits/sigcontext.h	70;"	m	struct:_fpstate	access:public
 pause	/usr/include/unistd.h	466;"	p
 pclose	/usr/include/stdio.h	874;"	p
 perror	/usr/include/stdio.h	841;"	p
+pid_t	/usr/include/signal.h	62;"	t
 pid_t	/usr/include/time.h	174;"	t
 pid_t	/usr/include/unistd.h	261;"	t
-place	mm.c	103;"	p	file:
-place	mm.c	423;"	f	file:
+place	mm.c	122;"	p	file:
+place	mm.c	485;"	f	file:
 pread	/usr/include/unistd.h	392;"	d
-printblock	mm.c	105;"	p	file:
-printblock	mm.c	501;"	f	file:
+printblock	mm.c	126;"	p	file:
+printblock	mm.c	627;"	f	file:
 printf	/usr/include/stdio.h	361;"	p
 pselect	/usr/include/sys/select.h	121;"	p
+psiginfo	/usr/include/signal.h	155;"	p
+psignal	/usr/include/signal.h	150;"	p
 pthread_attr_t	/usr/include/bits/pthreadtypes.h	57;"	t	typeref:union:__anon35
+pthread_attr_t	/usr/include/bits/pthreadtypes.h	57;"	t	typeref:union:__anon57
 pthread_barrier_t	/usr/include/bits/pthreadtypes.h	210;"	t	typeref:union:__anon45
+pthread_barrier_t	/usr/include/bits/pthreadtypes.h	210;"	t	typeref:union:__anon67
 pthread_barrierattr_t	/usr/include/bits/pthreadtypes.h	216;"	t	typeref:union:__anon46
+pthread_barrierattr_t	/usr/include/bits/pthreadtypes.h	216;"	t	typeref:union:__anon68
 pthread_cond_t	/usr/include/bits/pthreadtypes.h	130;"	t	typeref:union:__anon39
+pthread_cond_t	/usr/include/bits/pthreadtypes.h	130;"	t	typeref:union:__anon61
 pthread_condattr_t	/usr/include/bits/pthreadtypes.h	136;"	t	typeref:union:__anon41
+pthread_condattr_t	/usr/include/bits/pthreadtypes.h	136;"	t	typeref:union:__anon63
 pthread_key_t	/usr/include/bits/pthreadtypes.h	140;"	t
 pthread_mutex_t	/usr/include/bits/pthreadtypes.h	104;"	t	typeref:union:__anon36
+pthread_mutex_t	/usr/include/bits/pthreadtypes.h	104;"	t	typeref:union:__anon58
 pthread_mutexattr_t	/usr/include/bits/pthreadtypes.h	110;"	t	typeref:union:__anon38
+pthread_mutexattr_t	/usr/include/bits/pthreadtypes.h	110;"	t	typeref:union:__anon60
 pthread_once_t	/usr/include/bits/pthreadtypes.h	144;"	t
 pthread_rwlock_t	/usr/include/bits/pthreadtypes.h	189;"	t	typeref:union:__anon42
+pthread_rwlock_t	/usr/include/bits/pthreadtypes.h	189;"	t	typeref:union:__anon64
 pthread_rwlockattr_t	/usr/include/bits/pthreadtypes.h	195;"	t	typeref:union:__anon44
+pthread_rwlockattr_t	/usr/include/bits/pthreadtypes.h	195;"	t	typeref:union:__anon66
 pthread_spinlock_t	/usr/include/bits/pthreadtypes.h	201;"	t
 pthread_t	/usr/include/bits/pthreadtypes.h	50;"	t
-put_addr	mm.c	79;"	f	file:
+put_addr	mm.c	91;"	f	file:
 putc	/usr/include/stdio.h	578;"	p
 putc	/usr/include/stdio.h	589;"	d
 putc_unlocked	/usr/include/stdio.h	606;"	p
@@ -1025,34 +1222,76 @@ pwrite	/usr/include/unistd.h	393;"	d
 quot	/usr/include/stdlib.h	100;"	m	struct:__anon49	access:public
 quot	/usr/include/stdlib.h	108;"	m	struct:__anon50	access:public
 quot	/usr/include/stdlib.h	120;"	m	struct:__anon51	access:public
+r10	/usr/include/bits/sigcontext.h	129;"	m	struct:sigcontext	access:public
+r11	/usr/include/bits/sigcontext.h	130;"	m	struct:sigcontext	access:public
+r12	/usr/include/bits/sigcontext.h	131;"	m	struct:sigcontext	access:public
+r13	/usr/include/bits/sigcontext.h	132;"	m	struct:sigcontext	access:public
+r14	/usr/include/bits/sigcontext.h	133;"	m	struct:sigcontext	access:public
+r15	/usr/include/bits/sigcontext.h	134;"	m	struct:sigcontext	access:public
+r8	/usr/include/bits/sigcontext.h	127;"	m	struct:sigcontext	access:public
+r9	/usr/include/bits/sigcontext.h	128;"	m	struct:sigcontext	access:public
 rand_deg	/usr/include/stdlib.h	355;"	m	struct:random_data	access:public
 rand_sep	/usr/include/stdlib.h	356;"	m	struct:random_data	access:public
 rand_type	/usr/include/stdlib.h	354;"	m	struct:random_data	access:public
 random_data	/usr/include/stdlib.h	349;"	s
-realloc	mm.c	199;"	f
-realloc	mm.c	36;"	d	file:
+rax	/usr/include/bits/sigcontext.h	140;"	m	struct:sigcontext	access:public
+rbp	/usr/include/bits/sigcontext.h	137;"	m	struct:sigcontext	access:public
+rbx	/usr/include/bits/sigcontext.h	138;"	m	struct:sigcontext	access:public
+rcx	/usr/include/bits/sigcontext.h	141;"	m	struct:sigcontext	access:public
+rdi	/usr/include/bits/sigcontext.h	135;"	m	struct:sigcontext	access:public
+rdp	/usr/include/bits/sigcontext.h	117;"	m	struct:_fpstate	access:public
+rdx	/usr/include/bits/sigcontext.h	139;"	m	struct:sigcontext	access:public
+realloc	mm.c	248;"	f
+realloc	mm.c	41;"	d	file:
 rem	/usr/include/stdlib.h	101;"	m	struct:__anon49	access:public
 rem	/usr/include/stdlib.h	109;"	m	struct:__anon50	access:public
 rem	/usr/include/stdlib.h	121;"	m	struct:__anon51	access:public
 required_argument	/usr/include/getopt.h	119;"	d
+reserved	/usr/include/bits/sigcontext.h	67;"	m	struct:_fpstate	access:public
 rewind	/usr/include/stdio.h	754;"	p
-rover	mm.c	97;"	v	file:
+rip	/usr/include/bits/sigcontext.h	116;"	m	struct:_fpstate	access:public
+rip	/usr/include/bits/sigcontext.h	143;"	m	struct:sigcontext	access:public
+rover	mm.c	116;"	v	file:
 rptr	/usr/include/stdlib.h	352;"	m	struct:random_data	access:public
+rsi	/usr/include/bits/sigcontext.h	136;"	m	struct:sigcontext	access:public
+rsp	/usr/include/bits/sigcontext.h	142;"	m	struct:sigcontext	access:public
 scanf	/usr/include/stdio.h	462;"	d
+seg_listp	mm.c	113;"	v	file:
 select	/usr/include/sys/select.h	109;"	p
 setpgrp	/usr/include/unistd.h	677;"	d
+sig_atomic_t	/usr/include/signal.h	41;"	t
+sig_t	/usr/include/signal.h	216;"	t
+sigcontext	/usr/include/bits/sigcontext.h	125;"	s
+sigcontext	/usr/include/bits/sigcontext.h	81;"	s
+sigcontext_struct	/usr/include/bits/sigcontext.h	78;"	d
+sighandler_t	/usr/include/signal.h	211;"	t
+sigmask	/usr/include/signal.h	193;"	d
+significand	/usr/include/bits/sigcontext.h	30;"	m	struct:_fpreg	access:public
+significand	/usr/include/bits/sigcontext.h	36;"	m	struct:_fpxreg	access:public
+sigpause	/usr/include/signal.h	180;"	d
+sigset_t	/usr/include/signal.h	50;"	t
 sigset_t	/usr/include/sys/select.h	38;"	t
+sigvec	/usr/include/signal.h	314;"	s
 sleep	/usr/include/unistd.h	441;"	p
 socklen_t	/usr/include/unistd.h	275;"	t
+ss	/usr/include/bits/sigcontext.h	101;"	m	struct:sigcontext	access:public
 sscanf	/usr/include/stdio.h	463;"	d
 ssize_t	/usr/include/stdio.h	103;"	t
 ssize_t	/usr/include/unistd.h	221;"	t
 state	/usr/include/stdlib.h	353;"	m	struct:random_data	access:public
+status	/usr/include/bits/sigcontext.h	61;"	m	struct:_fpstate	access:public
 stderr	/usr/include/stdio.h	172;"	d
 stdin	/usr/include/stdio.h	170;"	d
 stdout	/usr/include/stdio.h	171;"	d
 suseconds_t	/usr/include/sys/select.h	49;"	t
+sv_flags	/usr/include/signal.h	319;"	m	struct:sigvec	access:public
+sv_handler	/usr/include/signal.h	316;"	m	struct:sigvec	access:public
+sv_mask	/usr/include/signal.h	317;"	m	struct:sigvec	access:public
+sv_onstack	/usr/include/signal.h	320;"	d
+sw	/usr/include/bits/sigcontext.h	54;"	m	struct:_fpstate	access:public
+swd	/usr/include/bits/sigcontext.h	113;"	m	struct:_fpstate	access:public
 swscanf	/usr/include/wchar.h	674;"	d
+tag	/usr/include/bits/sigcontext.h	55;"	m	struct:_fpstate	access:public
 time_t	/usr/include/time.h	76;"	t
 timer_t	/usr/include/time.h	104;"	t
 timespec	/usr/include/time.h	120;"	s
@@ -1069,11 +1308,14 @@ tm_wday	/usr/include/time.h	141;"	m	struct:tm	access:public
 tm_yday	/usr/include/time.h	142;"	m	struct:tm	access:public
 tm_year	/usr/include/time.h	140;"	m	struct:tm	access:public
 tm_zone	/usr/include/time.h	147;"	m	struct:tm	access:public
+trapno	/usr/include/bits/sigcontext.h	150;"	m	struct:sigcontext	access:public
+trapno	/usr/include/bits/sigcontext.h	95;"	m	struct:sigcontext	access:public
 truncate	/usr/include/unistd.h	1015;"	d
 tv_nsec	/usr/include/time.h	123;"	m	struct:timespec	access:public
 tv_sec	/usr/include/bits/time.h	77;"	m	struct:timeval	access:public
 tv_sec	/usr/include/time.h	122;"	m	struct:timespec	access:public
 tv_usec	/usr/include/bits/time.h	78;"	m	struct:timeval	access:public
+uid_t	/usr/include/signal.h	68;"	t
 uid_t	/usr/include/unistd.h	238;"	t
 ungetc	/usr/include/stdio.h	697;"	p
 ungetwc	/usr/include/wchar.h	787;"	p
