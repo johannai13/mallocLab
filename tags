@@ -27,12 +27,13 @@ ENSURES	contracts.h	18;"	d
 ENSURES	contracts.h	24;"	d
 EPSILON	fcyc.c	20;"	d	file:
 FREE	mdriver.c	/^    enum { ALLOC, FREE, REALLOC } type; \/* type of request *\/$/;"	e	enum:__anon1::__anon2	file:
-FTRP	mm.c	72;"	d	file:
-GET_ALLOC	mm.c	68;"	d	file:
-GET_SIZE	mm.c	67;"	d	file:
-GET	mm.c	63;"	d	file:
+FTRP	mm.c	77;"	d	file:
+GET_ALLOC	mm.c	72;"	d	file:
+GET_PREV_ALLOC	mm.c	73;"	d	file:
+GET_SIZE	mm.c	71;"	d	file:
+GET	mm.c	67;"	d	file:
 HDRLINES	mdriver.c	34;"	d	file:
-HDRP	mm.c	71;"	d	file:
+HDRP	mm.c	76;"	d	file:
 IS_ALIGNED	mdriver.c	38;"	d	file:
 KEEP_SAMPLES	fcyc.c	41;"	d	file:
 KEEP_VALS	fcyc.c	40;"	d	file:
@@ -50,15 +51,15 @@ MIN_SPACE	config.h	81;"	d
 MIN_SPEED	config.h	75;"	d
 Mhz	fsecs.c	/^static double Mhz;  \/* estimated CPU clock frequency *\/$/;"	v	file:
 NEVENT	clock.c	226;"	d	file:
-NEXT_BLKP	mm.c	75;"	d	file:
-NEXT_FBLKP	mm.c	80;"	d	file:
+NEXT_BLKP	mm.c	80;"	d	file:
+NEXT_FBLKP	mm.c	85;"	d	file:
 NUM_INF	mm.c	33;"	d	file:
 NUM_LINEAR	mm.c	32;"	d	file:
 NUM_LIST	mm.c	34;"	d	file:
-PACK	mm.c	60;"	d	file:
-PREV_BLKP	mm.c	76;"	d	file:
-PREV_FBLKP	mm.c	81;"	d	file:
-PUT	mm.c	64;"	d	file:
+PACK	mm.c	64;"	d	file:
+PREV_BLKP	mm.c	81;"	d	file:
+PREV_FBLKP	mm.c	86;"	d	file:
+PUT	mm.c	68;"	d	file:
 RANDOM_DATA_LEN	mdriver.c	121;"	d	file:
 REALLOC	mdriver.c	/^    enum { ALLOC, FREE, REALLOC } type; \/* type of request *\/$/;"	e	enum:__anon1::__anon2	file:
 RECORDTHRESH	clock.c	228;"	d	file:
@@ -114,8 +115,7 @@ dbg_printf	mm.c	23;"	d	file:
 dbg_printf	mm.c	25;"	d	file:
 debug_mode	mdriver.c	/^static enum { DBG_NONE, DBG_CHEAP, DBG_EXPENSIVE } debug_mode = DBG_CHEAP;$/;"	v	typeref:enum:__anon6	file:
 default_tracefiles	mdriver.c	/^static char *default_tracefiles[] = {$/;"	v	file:
-delete	mm.c	/^static void delete(int list_num, void* bp) {$/;"	f	file:
-divide_chunk	mm.c	/^static void divide_chunk(void *bp) {$/;"	f	file:
+delete	mm.c	/^static inline void delete(void* bp) {$/;"	f	file:
 epsilon	fcyc.c	/^static double epsilon = EPSILON;$/;"	v	file:
 errors	mdriver.c	/^static int errors = 0;  \/* number of errs found when running student malloc *\/$/;"	v	file:
 eval_libc_speed	mdriver.c	/^static void eval_libc_speed(void *ptr)$/;"	f	file:
@@ -162,7 +162,7 @@ init_fsecs	fsecs.c	/^void init_fsecs(void)$/;"	f
 init_random_data	mdriver.c	/^static void init_random_data(void) {$/;"	f	file:
 init_sampler	fcyc.c	/^static void init_sampler()$/;"	f	file:
 init_seglist	mm.c	/^static int init_seglist(){$/;"	f	file:
-insert	mm.c	/^static void insert(int list_num, void* bp) {$/;"	f	file:
+insert	mm.c	/^static inline void insert(int list_num, void* bp) {$/;"	f	file:
 is_addr	mm.c	/^static inline int is_addr(void *bp) {$/;"	f	file:
 kbest	fcyc.c	/^static int kbest = K;$/;"	v	file:
 lo	mdriver.c	/^    char *lo;              \/* low payload address *\/$/;"	m	struct:range_t	file:
